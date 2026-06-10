@@ -7,7 +7,7 @@ const PRODUCTS = [
   {
     id: 1,
     name: "Nutraceuticals & Daily Wellness",
-    image: "/pill.jpg",
+    image: "/Pill.jpg",
     description:
       "Science-backed supplements and gummies designed to support immunity, sleep, brain health, gut wellness, and everyday vitality through a blend of Ayurveda and modern nutrition.",
     tags: ["Immunity", "Sleep", "Brain Health", "Gut Wellness"],
