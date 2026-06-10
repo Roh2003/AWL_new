@@ -1,0 +1,801 @@
+/* ===== SUSTAINABILITY PAGE ===== */
+.sustainability-page {
+  --green: #4a7c2f;
+  --green-text: #3a6b25;
+  --lime: #c8f55a;
+  --teal: #2e7d6e;
+  --black: #0a0a0a;
+  --white: #fff;
+  --blush: #fdf5f0;
+  --blush2: #fef6f2;
+  --gray-100: #f5f5f3;
+  --gray-200: #e8e8e4;
+  --gray-500: #888884;
+  --gray-700: #3a3a38;
+  --text-body: #4a5568;
+  --dark-hero: #2a2820;
+
+  --font-display: 'Inter Display', 'Inter', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-figtree: 'Manrope', sans-serif;
+
+  font-family: var(--font-figtree), 'Figtree', sans-serif;
+  background: #fff;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* ===== REVEAL ANIMATIONS (page-scoped) ===== */
+.sustainability-page .reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .85s cubic-bezier(.16, 1, .3, 1), transform .85s cubic-bezier(.16, 1, .3, 1);
+}
+
+.sustainability-page .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sustainability-page .reveal-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity .85s cubic-bezier(.16, 1, .3, 1), transform .85s cubic-bezier(.16, 1, .3, 1);
+}
+
+.sustainability-page .reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sustainability-page .reveal-right {
+  opacity: 0;
+  transform: translateX(36px);
+  transition: opacity .85s cubic-bezier(.16, 1, .3, 1), transform .85s cubic-bezier(.16, 1, .3, 1);
+}
+
+.sustainability-page .reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sustainability-page .d1 {
+  transition-delay: .1s;
+}
+
+.sustainability-page .d2 {
+  transition-delay: .2s;
+}
+
+.sustainability-page .d3 {
+  transition-delay: .3s;
+}
+
+/* ===== HERO ===== */
+.sustainability-page #sus-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.sustainability-page .sus-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #2a2520 0%, #3a3028 40%, #1e1e1a 70%, #0e0e0c 100%);
+}
+
+/* Space reserved for video/image — fill when asset is available */
+.sustainability-page .sus-hero-video-slot {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sustainability-page .sus-hero-video-slot video,
+.sustainability-page .sus-hero-video-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .65;
+}
+
+/* Fallback gradient when no video: cinematic warm/dark tones */
+.sustainability-page .sus-hero-video-slot.empty {
+  background:
+    radial-gradient(ellipse 70% 90% at 65% 40%, rgba(80, 60, 40, .55) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 60% at 55% 60%, rgba(60, 45, 30, .4) 0%, transparent 60%);
+}
+
+.sustainability-page .sus-hero-video-slot.empty::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(50, 40, 28, .6) 0%, rgba(30, 25, 18, .3) 50%, rgba(10, 10, 8, .7) 100%);
+}
+
+/* Subtle light streak — window effect */
+.sustainability-page .sus-hero-video-slot.empty::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 25%;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(200, 160, 80, .15), transparent);
+}
+
+.sustainability-page .sus-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10, 10, 8, .85) 0%, rgba(10, 10, 8, .4) 55%, rgba(10, 10, 8, .1) 100%);
+}
+
+.sustainability-page .sus-hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 48px 100px;
+
+}
+
+.sustainability-page .sus-hero-title {
+  color: var(--White, #FFF);
+  font-family: var(--font-inter), "Inter Display";
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 80px;
+  /* 114.286% */
+  letter-spacing: -0.7px;
+  text-transform: capitalize;
+  max-width: 1000px;
+  margin-left: 72px;
+}
+
+.sustainability-page .sus-hero-body-wrap {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 36px;
+  max-width: 1100px;
+}
+
+.sustainability-page .sus-hero-asterisk {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: susSpin 8s linear infinite;
+}
+
+@keyframes susSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sustainability-page .sus-hero-body {
+  color: #FFF;
+  font-family: Manrope;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  letter-spacing: 0.4px;
+  max-width: 1000px;
+  margin-top: 0;
+}
+
+@keyframes susFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sustainability-page .sus-scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  animation: susFadeUp .8s 1.2s forwards;
+}
+
+.sustainability-page .sus-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 255, 255, .2);
+  position: relative;
+  overflow: hidden;
+}
+
+.sustainability-page .sus-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--lime);
+  animation: susScrollDown 1.6s ease infinite;
+}
+
+@keyframes susScrollDown {
+  0% {
+    top: -100%;
+  }
+
+  100% {
+    top: 200%;
+  }
+}
+
+/* ===== APPROACH / ACCORDION ===== */
+.sustainability-page #approach {
+  background: #fff;
+  padding: 100px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sustainability-page .approach-bg-shape {
+  position: absolute;
+  right: -30px;
+  top: 10%;
+  width: 580px;
+  pointer-events: none;
+
+}
+
+.sustainability-page .approach-bg-shape img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sustainability-page .approach-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 80px;
+  gap: 40px;
+}
+
+.sustainability-page .approach-tag {
+  display: inline-block;
+  padding: 7px 16px;
+  background: var(--black);
+  color: #fff;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+.sustainability-page .approach-title {
+  color: #050505;
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  /* 67.2px */
+  letter-spacing: -0.56px;
+  text-transform: capitalize;
+}
+
+/* Accordion */
+@keyframes accordionIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sustainability-page .accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sustainability-page .accordion-list .accordion-item {
+  animation: accordionIn .5s cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.sustainability-page .accordion-list .accordion-item:nth-child(1) {
+  animation-delay: .05s;
+}
+
+.sustainability-page .accordion-list .accordion-item:nth-child(2) {
+  animation-delay: .12s;
+}
+
+.sustainability-page .accordion-list .accordion-item:nth-child(3) {
+  animation-delay: .19s;
+}
+
+.sustainability-page .accordion-list .accordion-item:nth-child(4) {
+  animation-delay: .26s;
+}
+
+.sustainability-page .accordion-item {
+  border: 1px solid var(--gray-200);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: background .35s, border-color .35s, box-shadow .35s;
+  background: #fff;
+  cursor: default;
+}
+
+.sustainability-page .accordion-item.is-open {
+  background: var(--blush2);
+  border-color: transparent;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .06);
+}
+
+/* Single flex row: [title] [image] [text] [arrow] */
+.sustainability-page .accordion-content {
+  display: flex;
+  align-items: center;
+  padding: 24px 36px;
+  overflow: hidden;
+  min-height: 80px;
+}
+
+/* Title — fixed left column, always visible */
+.sustainability-page .accordion-title-col {
+  flex-shrink: 0;
+  max-width: 38%;
+  min-width: 180px;
+}
+
+.sustainability-page .accordion-title {
+  color: #050505;
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  /* 38.4px */
+  letter-spacing: -0.32px;
+  text-transform: capitalize;
+}
+
+/* Right-side wrapper — pushed to the far right of the row */
+.sustainability-page .accordion-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  /* pushes entire right block to the end */
+  flex-shrink: 0;
+}
+
+/* Image — collapses to 0×0 when closed, expands on open */
+.sustainability-page .accordion-media {
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  /* Collapsed: invisible & zero-size */
+  width: 0;
+  height: 0;
+  max-width: 0;
+  max-height: 0;
+  transition:
+    width .55s cubic-bezier(.16, 1, .3, 1),
+    height .55s cubic-bezier(.16, 1, .3, 1),
+    max-width .55s cubic-bezier(.16, 1, .3, 1),
+    max-height .55s cubic-bezier(.16, 1, .3, 1);
+}
+
+.sustainability-page .accordion-item.is-open .accordion-media {
+  width: 300px;
+  height: 220px;
+  max-width: 300px;
+  max-height: 220px;
+}
+
+/* Description text — hidden when collapsed, fades in when open */
+.sustainability-page .accordion-desc {
+  flex: 1;
+  max-width: 0;
+  max-height: 0;
+  /* KEY FIX: prevents text from wrapping into 0-width infinite-height column */
+  overflow: hidden;
+  color: #050505;
+  opacity: 0;
+  margin-left: 0;
+  font-size: 25px;
+  font-weight: 600px;
+  line-height: 35px;
+  color: var(--font-body);
+  min-width: 0;
+  transition:
+    max-width .55s cubic-bezier(.16, 1, .3, 1),
+    max-height .55s cubic-bezier(.16, 1, .3, 1),
+    opacity .3s .15s,
+    margin-left .55s cubic-bezier(.16, 1, .3, 1);
+  white-space: normal;
+}
+
+.sustainability-page .accordion-item.is-open .accordion-desc {
+  max-width: 520px;
+  max-height: 400px;
+  /* larger than any expected text height */
+  opacity: 1;
+  margin-left: 48px;
+}
+
+/* Arrow — visible when collapsed, hides when open */
+.sustainability-page .accordion-arrow {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--gray-500);
+  background: transparent;
+  transition: opacity .3s;
+  margin-left: 36px;
+  /* gap between desc and arrow */
+}
+
+.sustainability-page .accordion-item.is-open .accordion-arrow {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ===== COMMUNITY IMPACT ===== */
+.sustainability-page #community {
+  position: relative;
+  overflow: hidden;
+  background: var(--black);
+  padding: 80px 0 0;
+}
+
+/* Background image layer */
+.sustainability-page #community::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/images/sustainability/community-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.45;
+  z-index: 0;
+}
+
+/* Ensure all direct children sit above the bg */
+.sustainability-page #community>* {
+  position: relative;
+  z-index: 1;
+}
+
+.sustainability-page .community-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 48px 60px;
+  gap: 40px;
+}
+
+.sustainability-page .community-tag {
+  display: inline-block;
+  padding: 8px 18px;
+  background: #fff;
+  color: #000;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.sustainability-page .community-title {
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.03em;
+  max-width: 580px;
+  text-align: right;
+  margin-left: auto;
+}
+
+/* Slider */
+.sustainability-page .slider-outer {
+  position: relative;
+  /* positioning context for arrows */
+  padding: 0 9%;
+  /* leaves 9% on each side for the dark areas */
+}
+
+.sustainability-page .slider-wrap {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.sustainability-page .slider-track {
+  display: flex;
+  transition: transform .6s cubic-bezier(.16, 1, .3, 1);
+  will-change: transform;
+}
+
+.sustainability-page .slide {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.sustainability-page .slide-img {
+  height: 590px;
+  overflow: hidden;
+  position: relative;
+  background: var(--gray-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120px;
+}
+
+.sustainability-page .slide-content {
+  background: #fff;
+  padding: 60px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sustainability-page .slide-title {
+  color: #95D754;
+  font-size: 45px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+
+.sustainability-page .slide-body {
+  color: var(--PremiumGray1, #2B2B2B);
+  font-family: Manrope;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  /* 44.8px */
+  letter-spacing: -0.28px;
+}
+
+/* Slider Controls — float in the dark side areas */
+.sustainability-page .slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .3);
+  background: rgba(255, 255, 255, .1);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: background .25s, border-color .25s;
+}
+
+.sustainability-page .slider-btn:hover {
+  background: rgba(255, 255, 255, .25);
+  border-color: rgba(255, 255, 255, .6);
+}
+
+.sustainability-page .slider-prev {
+  left: 3%;
+  /* sits in the dark left area */
+}
+
+.sustainability-page .slider-next {
+  right: 3%;
+  /* sits in the dark right area */
+}
+
+/* Slider dots */
+.sustainability-page .slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 0;
+  background: var(--black);
+}
+
+.sustainability-page .slider-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .25);
+  cursor: pointer;
+  transition: background .3s, width .3s;
+  border: none;
+}
+
+.sustainability-page .slider-dot.active {
+  background: var(--lime);
+  width: 20px;
+  border-radius: 4px;
+}
+
+/* ===== QUOTE BANNER ===== */
+.sustainability-page #quote-banner {
+  background: #fff;
+  padding: 80px 48px;
+}
+
+.sustainability-page .quote-card {
+  background: var(--black);
+  border-radius: 20px;
+  padding: 52px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sustainability-page .quote-card::before {
+  content: '';
+  position: absolute;
+  right: -80px;
+  bottom: -80px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .06);
+}
+
+.sustainability-page .quote-card::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .04);
+}
+
+.sustainability-page .quote-wave {
+  position: absolute;
+  right: 60px;
+  bottom: 40px;
+  width: 200px;
+  height: 80px;
+  opacity: .1;
+}
+
+.sustainability-page .quote-text {
+  color: #FFF;
+  font-family: var(--font-body);
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  /* 64px */
+  letter-spacing: -0.4px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .sustainability-page .sus-hero-content {
+    padding: 0 20px 80px;
+  }
+
+  .sustainability-page #approach {
+    padding: 80px 20px;
+  }
+
+  .sustainability-page .approach-header {
+    flex-direction: column;
+  }
+
+  .sustainability-page .approach-title {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .sustainability-page .accordion-content {
+    padding: 20px;
+    flex-wrap: wrap;
+    min-height: auto;
+    gap: 20px;
+  }
+
+  .sustainability-page .accordion-title-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .sustainability-page .accordion-item.is-open .accordion-media {
+    width: 100%;
+    height: 200px;
+    margin-left: 0;
+    margin-top: 16px;
+  }
+
+  .sustainability-page .accordion-item.is-open .accordion-desc {
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 16px;
+  }
+
+  .sustainability-page #community {
+    padding: 60px 0 0;
+  }
+
+  .sustainability-page .community-header {
+    flex-direction: column;
+    padding: 0 20px 40px;
+  }
+
+  .sustainability-page .community-title {
+    text-align: left;
+    margin-left: 0;
+  }
+
+  .sustainability-page .slider-outer {
+    padding: 0;
+    /* full width on mobile */
+  }
+
+  .sustainability-page .slider-prev {
+    left: 10px;
+  }
+
+  .sustainability-page .slider-next {
+    right: 10px;
+  }
+
+  .sustainability-page .slide {
+    grid-template-columns: 1fr;
+  }
+
+  .sustainability-page .slide-img {
+    height: 280px;
+  }
+
+  .sustainability-page .slide-content {
+    padding: 32px 20px;
+  }
+
+  .sustainability-page #quote-banner {
+    padding: 60px 20px;
+  }
+
+  .sustainability-page .quote-card {
+    padding: 36px 28px;
+  }
+}
