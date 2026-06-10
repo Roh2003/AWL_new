@@ -2336,12 +2336,81 @@ footer {
     grid-template-columns: 1fr 1fr;
   }
 
-  .why-card-lime {
-    grid-row: span 1;
+  /* Carousel cards basis adjustment for tablet */
+  .products-grid .product-card {
+    flex: 0 0 calc(50% - 12px);
   }
 
-  .news-card-featured {
-    grid-row: span 1;
+  .products-nav {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+
+  /* Beyond accordion image margin-left & height reset */
+  .beyond-img {
+    margin-left: 0 !important;
+    height: 440px !important;
+  }
+
+  /* Why Choose Us Grid coordinates reset */
+  .why-header {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .why-card {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-height: 320px !important;
+  }
+
+  .why-card-lime {
+    min-height: 320px !important;
+  }
+
+  /* Press Releases layout reset */
+  .news-header {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .press-card-featured {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .press-card-featured .press-img-container {
+    height: 320px !important;
+  }
+
+  .press-card-horizontal {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    flex-direction: column !important;
+    height: auto !important;
+  }
+
+  .press-card-horizontal .press-img-container {
+    width: 100% !important;
+    height: 280px !important;
+  }
+
+  /* Contact Form margin offset reset */
+  .contact-right {
+    margin-left: 0 !important;
+  }
+
+  /* Footer layout start alignment */
+  .footer-top>div:nth-child(2),
+  .footer-top>div:nth-child(3) {
+    justify-self: start;
+  }
+
+  /* Wordmark scaling to prevent overflow */
+  .footer-wordmark {
+    font-size: 18vw;
+    line-height: 1.4;
+    letter-spacing: -0.04em;
   }
 
   #about,
@@ -2368,6 +2437,37 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  /* Carousel cards basis adjustment for mobile */
+  .products-grid .product-card {
+    flex: 0 0 100%;
+  }
+
+  .products-nav {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .nav-progress {
+    margin: 0 24px;
+  }
+
+  /* Beyond accordion image height and row stack */
+  .beyond-img {
+    height: 280px !important;
+  }
+
+  .beyond-item-open-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  /* Reach Map legible height */
+  .reach-map {
+    aspect-ratio: 1.5 / 1;
+    min-height: 260px;
+  }
+
   .products-header {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -2375,6 +2475,18 @@ footer {
 
   .footer-top {
     grid-template-columns: 1fr;
+  }
+
+  .footer-wordmark {
+    font-size: 16vw;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+  }
+
+  /* Contact input stack */
+  .contact-form-row {
+    flex-direction: column;
+    gap: 32px;
   }
 
   #about,
