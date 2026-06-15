@@ -1,5 +1,13 @@
 import React from "react";
-import { SectionTag } from "@/components/ui/SectionTag";
+import { Manrope } from "next/font/google";
+import { CareersHero, CareersThrive, CareersFeels, CareersJobs } from "@/components/careers";
+import "./careers.css";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-body",
+});
 
 export const metadata = {
   title: "Careers - Aayush Wellness Limited",
@@ -8,12 +16,11 @@ export const metadata = {
 
 export default function CareersPage() {
   return (
-    <main className="w-full" style={{ padding: "160px 48px 120px", background: "var(--off-white)" }}>
-      <SectionTag num="01" label="Careers" theme="dark" />
-      <h1 className="about-title" style={{ marginBottom: "32px", fontSize: "clamp(32px, 4vw, 52px)" }}>Work with Aayush</h1>
-      <p className="about-body" style={{ maxWidth: "800px", fontSize: "16px", lineHeight: "1.75", color: "var(--gray-700)" }}>
-        We are always seeking passionate individuals to join our mission of democratizing preventive healthcare. If you are a designer, researcher, formulator, marketer, or developer looking to shape the future of health, send us your resume at <a href="mailto:careers@aayushwellness.com" style={{ color: "var(--lime-dark)", fontWeight: "bold" }}>careers@aayushwellness.com</a>.
-      </p>
+    <main className={`${manrope.variable} careers-page w-full`}>
+      <CareersHero />
+      <CareersThrive />
+      <CareersFeels />
+      <CareersJobs />
     </main>
   );
 }
