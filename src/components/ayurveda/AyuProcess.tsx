@@ -40,7 +40,8 @@ export function AyuProcess() {
 
   return (
     <section className="ayu-process">
-      <div className="ayu-process-layout-grid">
+      {/* Desktop Layout */}
+      <div className="ayu-process-layout-grid ayu-process-desktop-only">
         {/* Left Part: Tag and Nav Button List */}
         <div className="ayu-process-left-part">
           <div className="ayu-process-tag-wrap reveal">
@@ -84,6 +85,60 @@ export function AyuProcess() {
               <p className="ayu-process-detail-desc">{activeStep.desc}</p>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile Accordion Layout */}
+      <div className="ayu-process-mobile-only">
+        <div className="ayu-process-tag-wrap reveal">
+          <AyuTag label="From Root To Result" theme="dark" />
+        </div>
+
+        <h2 className="ayu-process-title">
+          How Ancient Wisdom Becomes A Product You Can Trust.
+        </h2>
+
+        <div className="ayu-process-accordion">
+          {stepsData.map((step, idx) => {
+            const isActive = idx === activeIdx;
+            return (
+              <div
+                key={step.num}
+                className={`ayu-process-accordion-item ${isActive ? "active" : ""}`}
+              >
+                {isActive ? (
+                  <div className="ayu-process-accordion-active-card">
+                    <div
+                      className="ayu-process-accordion-active-header"
+                      onClick={() => setActiveIdx(idx)}
+                    >
+                      <span className="ayu-process-accordion-active-num">{step.num}</span>
+                      <h3 className="ayu-process-accordion-active-title">{step.title}</h3>
+                    </div>
+                    <div className="ayu-process-accordion-active-content">
+                      <div className="ayu-process-accordion-active-img">
+                        <img src={step.detailImg} alt={step.title} />
+                      </div>
+                      <p className="ayu-process-accordion-active-desc">{step.desc}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    className="ayu-process-accordion-collapsed-row"
+                    onClick={() => setActiveIdx(idx)}
+                  >
+                    <div className="ayu-process-accordion-collapsed-img">
+                      <img src={step.btnImg} alt={step.title} />
+                    </div>
+                    <div className="ayu-process-accordion-collapsed-info">
+                      <span className="ayu-process-accordion-collapsed-num">{step.num}</span>
+                      <span className="ayu-process-accordion-collapsed-title">{step.title}</span>
+                    </div>
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

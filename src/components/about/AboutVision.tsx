@@ -5,8 +5,15 @@ import React, { useEffect, useRef, useState } from "react";
 export function AboutVision() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const handleScroll = () => {
       const container = containerRef.current;
       if (!container) return;
@@ -28,10 +35,48 @@ export function AboutVision() {
     handleScroll();
 
     return () => {
+      window.removeEventListener("resize", checkMobile);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
   }, []);
+
+  // Return static stacking layout for mobile
+  if (isMobile) {
+    return (
+      <div className="vision-mobile-container">
+        {/* Vision Card Block */}
+        <div className="vision-mobile-section">
+          <div className="vision-mobile-bg yoga-img"></div>
+          <div className="vision-mobile-overlay"></div>
+          <div className="vision-mobile-card">
+            <div className="vision-label">Our Vision</div>
+            <div className="vision-text">
+              To create a world where health is defined by prevention, not just treatment.
+              We envision empowering every individual with accessible healthcare, science-backed nutrition,
+              and holistic wellness solutions - bridging the gap between modern medicine and nature's wisdom
+              to make proactive health a daily reality for all.
+            </div>
+          </div>
+        </div>
+
+        {/* Purpose Card Block */}
+        <div className="vision-mobile-section">
+          <div className="vision-mobile-bg leaf-img"></div>
+          <div className="vision-mobile-overlay"></div>
+          <div className="vision-mobile-card purpose-theme">
+            <div className="purpose-label">Our Purpose</div>
+            <div className="purpose-text">
+              To develop and deliver high-quality nutraceuticals, herbal wellness alternatives,
+              and preventive healthcare services that support long-term well-being. Through rigorous
+              scientific research, uncompromising quality, and a people-first approach - we make
+              wellness simple, effective, and accessible to everyone.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Calculate opacities and translation values based on scroll progress
 

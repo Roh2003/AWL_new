@@ -185,6 +185,11 @@ export function AccEvaluation() {
 
                   {/* Content below dot */}
                   <div className="acc-step-content" style={contentStyle}>
+                    {!isDesktop && (
+                      <div className={`acc-mobile-stage-label ${s.label.toLowerCase().replace(" ", "-")}`}>
+                        {s.label}
+                      </div>
+                    )}
                     <div className="acc-step-title">{s.title}</div>
                     <div className="acc-step-desc">{s.desc}</div>
                     <div className="acc-step-criteria">{s.criteria}</div>
