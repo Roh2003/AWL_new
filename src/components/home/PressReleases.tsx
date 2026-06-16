@@ -22,7 +22,7 @@ const STATIC_PRESS_ITEMS: PressItem[] = [
     title: "Aayush Wellness launches \"Liver Detox Tablets\" to capture growing demand in Preventive Wellness and Lifestyle Disease Management.",
     excerpt: "Launch aligns with rising fatty liver prevalence and a rapidly expanding nutraceutical market, reinforcing the Company's strategy to build condition-led preventive healthcare categories.",
     date: "03-04-2026",
-    link: "#",
+    link: "/news",
     hasImage: true,
   },
   {
@@ -31,7 +31,7 @@ const STATIC_PRESS_ITEMS: PressItem[] = [
     title: "Aayush Wellness Enters India's ₹366 Billion Metabolic Health Market with Launch of Aayush Dia Shield Tablets",
     excerpt: "Targets over 230 million Indians affected by diabetes and pre-diabetes with a preventive, science-backed wellness solution",
     date: "03-04-2026",
-    link: "#",
+    link: "/news",
     hasImage: false,
   },
   {
@@ -40,7 +40,7 @@ const STATIC_PRESS_ITEMS: PressItem[] = [
     title: "Strategic Collaboration With Healthrashi Nextgen India Limited To Deliver Integrated Healthcare Solutions",
     excerpt: "Strengthen Its Presence in India's USD 370 Billion Preventive Healthcare Market",
     date: "03-04-2026",
-    link: "#",
+    link: "/news",
     hasImage: false,
   },
   {
@@ -49,7 +49,7 @@ const STATIC_PRESS_ITEMS: PressItem[] = [
     title: "Aayush Wellness Strengthens Its Presence in the $18 Billion Nutraceutical Market with Launch of Immunity Booster Tablets.",
     excerpt: "Enhancing shareholder value through category expansion into India's fastest-growing wellness segment",
     date: "03-04-2026",
-    link: "#",
+    link: "/news",
     hasImage: true,
   },
 ];

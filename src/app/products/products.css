@@ -1,0 +1,1021 @@
+/* ==========================================================================
+   PRODUCTS PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+.products-page {
+  /* Design Tokens */
+  --bg-page: #ffffff;
+  --bg-card: #FBFBFB;
+  --text-primary: #050505;
+  --text-secondary: #4b5563;
+  --lime-accent: #C1FF72;
+  --lime-light: #D4FF9E;
+
+  font-family: var(--font-body), 'Manrope', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Page Container styling */
+.products-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 6% 100px 6%;
+}
+
+/* ==========================================================================
+   HERO / INTRO SECTION
+   ========================================================================== */
+
+.products-hero-sec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 60px 0 80px 0;
+  border-bottom: 1.5px solid #f0eeea;
+}
+
+.products-hero-left {
+  flex: 1.2;
+  max-width: 45%;
+}
+
+.products-hero-title {
+  font-family: var(--font-display), 'Inter Display', sans-serif;
+  font-size: clamp(34px, 4vw, 70px);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.products-hero-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.asterisk-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spin-slow 12s linear infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.products-hero-right {
+  flex: 1.2;
+  max-width: 45%;
+}
+
+.products-hero-desc {
+  color: var(--PremiumGray1, #2B2B2B);
+  font-family: Manrope;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  /* 48px */
+  letter-spacing: 0.4px;
+}
+
+/* ==========================================================================
+   TABS NAVIGATION
+   ========================================================================== */
+
+.products-tabs-bar {
+  width: 100%;
+  border-bottom: 1.5px solid #f0eeea;
+  margin-bottom: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.tabs-nav-wrapper {
+  display: flex;
+  gap: 250px;
+}
+
+.tab-btn {
+  font-family: var(--font-display), 'Inter Display', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  padding: 24px 8px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+  outline: none;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  color: var(--text-primary);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5px;
+  left: 8px;
+  right: 8px;
+  height: 3px;
+  background-color: var(--lime-dark, #95D754);
+}
+
+/* ==========================================================================
+   PRODUCTS CONTENT SECTION & GRID
+   ========================================================================== */
+
+.products-list-sec {
+  margin-bottom: 60px;
+}
+
+.products-sec-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.products-sec-title {
+  color: #050505;
+  text-align: center;
+  font-family: var(--font-display), 'Inter Display', sans-serif;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  /* 89.6px */
+  letter-spacing: -0.56px;
+}
+
+.products-sec-subtitle {
+  color: var(--PremiumGray1, #2B2B2B);
+  max-width: 1119px;
+  text-align: center;
+  margin: 20px auto 0 auto;
+  font-family: Manrope;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160%;
+  /* 40px */
+  letter-spacing: -0.25px;
+}
+
+/* Grid Layout definitions based on Category content */
+.products-cards-grid {
+  display: grid;
+  gap: 40px;
+  width: 100%;
+}
+
+.grid-wellness-gummies {
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+.grid-health-supplements,
+.grid-herbal-masala {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ==========================================================================
+   PRODUCT CARD DESIGN
+   ========================================================================== */
+
+.prod-card {
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  padding: 40px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.01);
+}
+
+.prod-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.05);
+}
+
+/* Top Right Action Plus Icon */
+.prod-plus-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--lime-light);
+  color: var(--text-primary);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.prod-plus-btn:hover {
+  background-color: var(--lime-accent);
+  transform: scale(1.08);
+}
+
+/* Product image wrapper box */
+.prod-image-wrapper {
+  width: 293px;
+  height: 364px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.prod-actual-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.prod-card:hover .prod-actual-img {
+  transform: scale(1.05);
+}
+
+/* Custom scale overrides for Herbal Masala product images to compensate for large transparent padding in source files */
+.grid-herbal-masala .prod-actual-img {
+  transform: scale(1.75);
+}
+
+.grid-herbal-masala .prod-card:hover .prod-actual-img {
+  transform: scale(1.82);
+}
+
+
+/* Visual Placeholders when image string is empty */
+.prod-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.placeholder-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.35;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.prod-card:hover .placeholder-visual {
+  opacity: 0.6;
+  transform: scale(1.05);
+}
+
+.placeholder-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #9ca3af;
+}
+
+/* Placeholder gradients to maintain beautiful aesthetics */
+.gummy-gradient {
+  background: linear-gradient(135deg, #f2efff 0%, #ebf1fe 100%);
+  color: #818cf8;
+}
+
+.supplement-gradient {
+  background: linear-gradient(135deg, #edf7f3 0%, #e3f5eb 100%);
+  color: #34d399;
+}
+
+.masala-gradient {
+  background: linear-gradient(135deg, #fdf8eb 0%, #faf1d7 100%);
+  color: #fbbf24;
+}
+
+/* Product Card Information styling */
+.prod-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.prod-sublabel {
+  color: #68A22F;
+  font-family: Manrope;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  margin-bottom: 20px;
+  letter-spacing: -0.22px;
+  text-transform: uppercase;
+}
+
+.prod-title {
+  color: var(--text-primary);
+  font-family: var(--font-display), 'Inter Display', sans-serif;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  margin-bottom: 25px;
+  /* 54px */
+}
+
+.prod-description {
+  color: #6B7280;
+  text-align: center;
+  font-family: Manrope;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+  /* 40px */
+}
+
+/* ==========================================================================
+   BOTTOM BANNERS SECTION
+   ========================================================================== */
+
+/* 1. Explore full range banner for Wellness Gummies Tab */
+.gummies-banner-sec {
+  margin-top: 100px;
+}
+
+.gummies-banner-card {
+  background: linear-gradient(135deg, #E2FFAA 0%, #C3F87B 100%);
+  border-radius: 16px;
+  padding: 52px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.banner-left {
+  flex: 1.5;
+}
+
+.banner-title {
+  color: var(--text-primary);
+  font-family: var(--font-display), 'Inter Display', sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  /* 80px */
+  letter-spacing: -0.5px;
+}
+
+.banner-desc {
+  color: #2B2B28;
+  font-family: Manrope;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 00;
+  line-height: 160%;
+  /* 40px */
+}
+
+.banner-right {
+  flex-shrink: 0;
+}
+
+.banner-cta-btn {
+  background-color: var(--text-primary);
+  color: #ffffff;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 28px;
+  font-family: Manrope;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.banner-cta-btn:hover {
+  background-color: #262626;
+  transform: translateY(-2px);
+}
+
+/* 2. Key ingredients black banner for Herbal Masala Tab */
+.masala-banner-sec {
+  margin-top: 100px;
+}
+
+.masala-banner-card {
+  background-color: var(--text-primary);
+  border-radius: 16px;
+  padding: 64px 48px;
+  text-align: center;
+}
+
+.masala-banner-intro {
+  color: #ffffff;
+  font-size: clamp(18px, 2.2vw, 25px);
+  font-weight: 500;
+  line-height: 1.6;
+  max-width: 960px;
+  margin: 0 auto 40px auto;
+  letter-spacing: 0.01em;
+}
+
+.masala-features-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px;
+  margin-bottom: 52px;
+}
+
+.masala-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.checkmark-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--lime-accent);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.masala-ingredients-box {
+  border-top: 1.5px solid rgba(255, 255, 255, 0.12);
+  padding-top: 44px;
+}
+
+.ingredients-header {
+  font-family: var(--font-body), 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #888884;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+}
+
+.ingredients-inline-list {
+  color: #e5e7eb;
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.ingredient-item {
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.ingredient-name {
+  color: var(--lime-accent);
+  font-weight: 700;
+}
+
+.ingredient-benefit {
+  color: #d1d5db;
+}
+
+.ingredient-separator {
+  color: var(--lime-accent);
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 12px;
+}
+
+/* ==========================================================================
+   GLOBAL NAVBAR OVERRIDES (LIGHT-THEME)
+   ========================================================================== */
+
+body:has(.products-page) #navbar {
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1.5px solid #f0eeea !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02) !important;
+  transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s, transform 0.4s;
+}
+
+body:has(.products-page) #navbar .nav-logo-img {
+  filter: brightness(0) saturate(100%) invert(24%) sepia(39%) saturate(1478%) hue-rotate(76deg) brightness(94%) contrast(93%) !important;
+}
+
+body:has(.products-page) #navbar.scrolled {
+  background: rgba(255, 255, 255, 0.96) !important;
+  padding: 14px 48px !important;
+}
+
+body:has(.products-page) #navbar .nav-links>li>a {
+  color: var(--black, #0a0a0a) !important;
+}
+
+body:has(.products-page) #navbar .nav-links>li>a:hover {
+  color: var(--lime-accent) !important;
+}
+
+body:has(.products-page) #navbar .nav-links>li>a::after {
+  background: var(--lime-accent) !important;
+}
+
+body:has(.products-page) #navbar .dropdown-icon {
+  color: var(--black, #0a0a0a) !important;
+}
+
+body:has(.products-page) #navbar .nav-cta {
+  border: 1.5px solid var(--black, #0a0a0a) !important;
+  color: var(--black, #0a0a0a) !important;
+  background: transparent !important;
+  transition: all 0.25s ease;
+}
+
+body:has(.products-page) #navbar .nav-cta:hover {
+  background: var(--black, #0a0a0a) !important;
+  color: #ffffff !important;
+  border-color: var(--black, #0a0a0a) !important;
+}
+
+body:has(.products-page) #navbar .hamburger-line {
+  background-color: var(--black, #0a0a0a) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN / MEDIA QUERIES
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+  .grid-health-supplements,
+  .grid-herbal-masala {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .products-container {
+    padding: 24px 24px 60px 24px;
+  }
+
+  .products-hero-sec {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding: 32px 0 48px 0;
+  }
+
+  .products-hero-left,
+  .products-hero-right {
+    max-width: 100%;
+  }
+
+  .products-hero-center {
+    align-self: center;
+    margin: 8px 0;
+  }
+
+  .products-tabs-bar {
+    margin-bottom: 48px;
+  }
+
+  .gummies-banner-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 32px;
+    gap: 24px;
+  }
+
+  .banner-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .masala-banner-card {
+    padding: 40px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-tabs-bar {
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .products-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs-nav-wrapper {
+    gap: 40px;
+    padding: 0 16px;
+  }
+
+  .tab-btn {
+    font-size: 17px;
+    white-space: nowrap;
+    padding: 16px 4px;
+  }
+
+  .tab-btn.active::after {
+    left: 4px;
+    right: 4px;
+  }
+
+  .grid-wellness-gummies,
+  .grid-health-supplements,
+  .grid-herbal-masala {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .prod-card {
+    padding: 32px 24px;
+  }
+
+  .prod-image-wrapper {
+    height: 240px;
+  }
+
+  .masala-features-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding-left: 10px;
+  }
+}
+
+/* ==========================================================================
+   PRODUCT DETAIL MODAL OVERLAY & CARD
+   ========================================================================== */
+
+body.modal-open {
+  overflow: hidden;
+}
+
+.prod-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 10, 10, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  /* above fixed header */
+  padding: 24px;
+}
+
+.prod-modal-box {
+  background-color: #ffffff;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1250px;
+  padding: 48px;
+  position: relative;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.animate-modal-in {
+  animation: modalInAnimation 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Close Button */
+.modal-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--lime-light);
+  color: var(--text-primary);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background-color: var(--lime-accent);
+  transform: scale(1.06);
+}
+
+/* Modal contents structure */
+.prod-modal-content {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Left Column styling */
+.modal-left-col {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modal-image-circle {
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background-color: #E6FFAE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 98px;
+  position: relative;
+}
+
+.modal-image-circle .modal-actual-img {
+  height: 110%;
+  width: auto;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.modal-placeholder-icon {
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-thumbnails {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 34px;
+  justify-content: center;
+}
+
+.modal-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  border: 1.5px solid #f0eeea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  color: #c5c5c0;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.modal-thumb:hover {
+  border-color: var(--lime-accent);
+  background-color: #f6fdf6;
+}
+
+.modal-thumb.active {
+  border-color: var(--text-primary);
+  background-color: #f6fdf6;
+  box-shadow: 0 0 0 1.5px var(--text-primary);
+}
+
+.modal-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.modal-thumb:hover .modal-thumb-img {
+  transform: scale(1.06);
+}
+
+.modal-left-title {
+  font-family: var(--font-display), 'Inter', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+/* Divider Line */
+.modal-vertical-divider {
+  width: 1.5px;
+  background-color: #f0eeea;
+  margin: 0 48px;
+  align-self: stretch;
+}
+
+/* Right Column styling */
+.modal-right-col {
+  flex: 1.8;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-sec-block {
+  margin-bottom: 28px;
+}
+
+.modal-sec-block:last-child {
+  margin-bottom: 0;
+}
+
+.modal-sec-block .modal-sec-title {
+  font-family: var(--font-display), 'Inter Display', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+/* Benefits list */
+.benefit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 22px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.benefit-asterisk {
+  color: var(--lime-accent);
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-top: 10px;
+}
+
+.modal-consumer-need-desc {
+  color: #6B7280;
+  font-family: Manrope;
+  font-size: 20.561px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+}
+
+/* Ingredients Grid inside modal */
+.modal-ingredients-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ingredient-thumb {
+  width: 108px;
+  height: 64px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.02);
+  cursor: default;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.ingredient-thumb:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.02);
+}
+
+.ingredient-thumb-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.25;
+}
+
+/* Responsive Modal styling */
+@media (max-width: 900px) {
+  .prod-modal-box {
+    padding: 40px 32px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .prod-modal-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-left-col {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  .modal-vertical-divider {
+    width: 100%;
+    height: 1.5px;
+    margin: 12px 0 32px 0;
+  }
+
+  .modal-right-col {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .prod-modal-box {
+    padding: 32px 20px;
+  }
+
+  .modal-image-circle {
+    width: 200px;
+    height: 200px;
+  }
+
+  .modal-left-title {
+    font-size: 22px;
+  }
+
+  .modal-sec-block .modal-sec-title {
+    font-size: 17px;
+  }
+
+  .benefit-item {
+    font-size: 15px;
+  }
+}

@@ -3587,3 +3587,35 @@ footer {
     height: 18px !important;
   }
 }
+
+/* ==========================================================================
+   AYU-TAG GLOBAL UI STYLES
+   ========================================================================== */
+.ayu-tag {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+  user-select: none;
+  margin-bottom: 36px;
+}
+
+.ayu-tag-dark {
+  background: var(--black, #0a0a0a);
+  color: #fff;
+}
+
+.ayu-tag-light {
+  background: #fff;
+  color: var(--black, #0a0a0a);
+  border: 1px solid var(--gray-200, #e0ddd8);
+}
+
+.ayu-tag-glass {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(4px);
+}

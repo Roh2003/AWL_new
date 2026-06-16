@@ -1,5 +1,6 @@
 import React from "react";
-import { ProductCategories } from "@/components/home";
+import { ProductsPageClient } from "@/components/products";
+import "./products.css";
 
 export const metadata = {
   title: "Our Products - Aayush Wellness Limited",
@@ -8,8 +9,8 @@ export const metadata = {
 
 export default function ProductsPage() {
   return (
-    <main className="w-full" style={{ paddingTop: "100px" }}>
-      <ProductCategories />
+    <main className="products-page w-full" style={{ paddingTop: "100px" }}>
+      <ProductsPageClient />
     </main>
   );
 }

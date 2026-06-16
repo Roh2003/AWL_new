@@ -63,12 +63,10 @@
 .careers-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.3) 40%,
-    rgba(0, 0, 0, 0.75) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.75) 100%);
   z-index: 1;
 }
 
@@ -95,7 +93,7 @@
 /* ===== THRIVE GRID SECTION ===== */
 .careers-thrive {
   padding: 120px 48px;
-  max-width: 1600px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
@@ -129,7 +127,6 @@
 
 .careers-thrive-img-box {
   width: 100%;
-  border-radius: 24px;
   overflow: hidden;
   position: relative;
 }
@@ -161,7 +158,6 @@
 .careers-thrive-card {
   background: #FAFAF9;
   border: 1px solid rgba(0, 0, 0, 0.02);
-  border-radius: 24px;
   padding: 40px 32px;
   display: flex;
   flex-direction: column;
@@ -180,6 +176,7 @@
 }
 
 .careers-thrive-card-title {
+  color: #0F1012;
   font-family: var(--font-display);
   font-size: 24px;
   font-weight: 600;
@@ -188,9 +185,13 @@
 }
 
 .careers-thrive-card-body {
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--gray-700);
+  color: #626262;
+  font-family: Manrope;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 31.5px;
+  /* 150% */
   margin: 0;
 }
 
@@ -244,12 +245,7 @@
   width: max-content;
   transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
-  transform: translateX(
-    calc(
-      50% - var(--slide-active-width) / 2 - 
-      var(--active-idx) * (var(--slide-inactive-width) + var(--slide-gap))
-    )
-  );
+  transform: translateX(calc(50% - var(--slide-active-width) / 2 - var(--active-idx) * (var(--slide-inactive-width) + var(--slide-gap))));
 }
 
 .careers-feels-slide {
@@ -305,9 +301,9 @@
   flex-shrink: 0;
   will-change: width, opacity, padding;
   transition: width 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-              padding 0.95s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.95s ease;
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.95s ease;
 }
 
 .careers-feels-slide.active .careers-feels-slide-quote-card {
@@ -677,6 +673,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
