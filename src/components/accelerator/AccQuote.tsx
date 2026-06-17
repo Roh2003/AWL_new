@@ -5,6 +5,11 @@ export function AccQuote() {
     <section className="acc-quote-section">
       <div className="acc-quote-card reveal">
         <div className="acc-quote-bg" />
+        <div className="acc-quote-video-wrapper">
+          <video autoPlay muted loop playsInline className="acc-quote-video">
+            <source src="/assets/images/accelarator/acc_video.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="acc-quote-overlay" />
         <p className="acc-quote-text">
           By collaborating with forward-thinking organizations, we&apos;re not just expanding our
