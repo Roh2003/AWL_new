@@ -3619,3 +3619,10 @@ footer {
   color: #fff;
   backdrop-filter: blur(4px);
 }
+
+/* Force dark navbar background on the store page so white links and logo are visible on the light background */
+body:has(.store-page) #navbar {
+  background: rgba(10, 10, 10, 0.96) !important;
+  backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}

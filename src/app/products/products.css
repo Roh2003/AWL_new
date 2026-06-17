@@ -837,13 +837,32 @@ body.modal-open {
 
 .prod-modal-box {
   background-color: #ffffff;
-  border-radius: 24px;
   width: 100%;
   max-width: 1250px;
   padding: 48px;
   position: relative;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
   border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Custom thinned scrollbar for product modal box */
+.prod-modal-box::-webkit-scrollbar {
+  width: 4px;
+  height: 2px;
+}
+
+.prod-modal-box::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.prod-modal-box::-webkit-scrollbar-thumb {
+  background: var(--lime-dark, #95D754);
+  border-radius: 4px;
+}
+
+.prod-modal-box::-webkit-scrollbar-thumb:hover {
+  background: var(--lime-accent, #C1FF72);
 }
 
 .animate-modal-in {
@@ -1115,6 +1134,11 @@ body.modal-open {
   .modal-right-col {
     width: 100%;
   }
+
+  .modal-consumer-need-desc {
+    font-size: 15px;
+    line-height: 1.6;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1137,5 +1161,10 @@ body.modal-open {
 
   .benefit-item {
     font-size: 15px;
+  }
+
+  .modal-consumer-need-desc {
+    font-size: 13.5px;
+    line-height: 1.5;
   }
 }

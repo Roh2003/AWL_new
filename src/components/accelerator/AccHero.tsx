@@ -12,14 +12,14 @@ export function AccHero() {
           when this slot is empty.
       ─────────────────────────────────────────────────────────────────────── */}
       <div className="acc-hero-media">
-        {/* <video autoPlay muted loop playsInline>
-          <source src="/assets/video/accelerator-hero.mp4" type="video/mp4" />
+        <video autoPlay muted loop playsInline>
+          <source src="/assets/images/accelarator/acc_bg_video.mp4" type="video/mp4" />
         </video>
-        <div className="acc-hero-media-overlay" /> */}
+        <div className="acc-hero-media-overlay" />
       </div>
 
-      {/* Decorative colour gradients (visible when no media above) */}
-      <div className="acc-hero-deco" />
+      {/* Decorative colour gradients (visible when no media above)
+      <div className="acc-hero-deco" /> */}
 
       {/* Main copy */}
       <div className="acc-hero-main">
