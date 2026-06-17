@@ -130,7 +130,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: .65;
 }
 
 .ayurveda-page .ayu-hero-overlay {
@@ -355,73 +354,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 500px;
 }
 
 .ayurveda-page .ayu-principles-img-wrap {
   position: relative;
   width: 100%;
-  max-width: 440px;
-  height: 480px;
-}
-
-.ayurveda-page .ayu-principles-img-top {
-  width: 280px;
-  height: 280px;
+  max-width: 590px;
+  height: 520px;
   border-radius: 24px;
   overflow: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border: 4px solid #050505;
 }
 
-.ayurveda-page .ayu-principles-img-bottom {
-  width: 280px;
-  height: 280px;
+.ayurveda-page .ayu-principles-single-img {
+  width: 100%;
+  height: 100%;
   border-radius: 24px;
   overflow: hidden;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   border: 4px solid #050505;
+  background: #111;
 }
 
-.ayurveda-page .ayu-principles-img-top img,
-.ayurveda-page .ayu-principles-img-bottom img {
+.ayurveda-page .ayu-principles-single-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+
 }
 
-.ayurveda-page .ayu-principles-badge {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 120px;
-  height: 120px;
-  background: var(--lime);
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #050505;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  text-align: center;
-  line-height: 1.2;
-  box-shadow: 0 8px 24px rgba(194, 250, 124, 0.4);
-  border: 6px solid #050505;
-  z-index: 3;
-}
-
-.ayurveda-page .ayu-principles-badge span {
-  display: block;
-  font-size: 18px;
-  font-weight: 800;
+.ayurveda-page .ayu-principles-single-img:hover img {
+  transform: scale(1.03);
 }
 
 .ayurveda-page .ayu-principles-right {
@@ -804,48 +765,20 @@
     min-height: auto;
   }
 
-  /* Keep absolute positioning on tablet/mobile so they overlap like desktop */
   .ayurveda-page .ayu-principles-img-wrap {
     height: 380px;
     max-width: 380px;
     margin: 0 auto;
-    position: relative;
-  }
-
-  .ayurveda-page .ayu-principles-img-top {
-    width: 220px;
-    height: 220px;
-    top: 0;
-    left: 0;
-    position: absolute;
-  }
-
-  .ayurveda-page .ayu-principles-img-bottom {
-    width: 220px;
-    height: 220px;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-  }
-
-  .ayurveda-page .ayu-principles-badge {
-    width: 100px;
-    height: 100px;
-    font-size: 11px;
-    border-width: 4px;
-    box-shadow: 0 6px 18px rgba(194, 250, 124, 0.3);
-  }
-
-  .ayurveda-page .ayu-principles-badge span {
-    font-size: 15px;
   }
 }
 
 @media (max-width: 900px) {
+
   /* Toggle AyuProcess layouts */
   .ayurveda-page .ayu-process-desktop-only {
     display: none;
   }
+
   .ayurveda-page .ayu-process-mobile-only {
     display: flex;
     flex-direction: column;
@@ -1011,6 +944,7 @@
 }
 
 @media (max-width: 768px) {
+
   .ayurveda-page .ayu-gap,
   .ayurveda-page .ayu-principles,
   .ayurveda-page .ayu-process,
@@ -1052,7 +986,8 @@
 
   /* Gap Section Mobile Styling */
   .ayurveda-page .ayu-gap-left {
-    display: none; /* Hide background shape on mobile to maintain clean column layout */
+    display: none;
+    /* Hide background shape on mobile to maintain clean column layout */
   }
 
   .ayurveda-page .ayu-gap-title {
@@ -1087,24 +1022,6 @@
   .ayurveda-page .ayu-principles-img-wrap {
     height: 300px;
     max-width: 300px;
-  }
-
-  .ayurveda-page .ayu-principles-img-top,
-  .ayurveda-page .ayu-principles-img-bottom {
-    width: 170px;
-    height: 170px;
-    border-radius: 16px;
-  }
-
-  .ayurveda-page .ayu-principles-badge {
-    width: 90px;
-    height: 90px;
-    font-size: 9px;
-    border-width: 4px;
-  }
-
-  .ayurveda-page .ayu-principles-badge span {
-    font-size: 9px;
   }
 
   .ayurveda-page .ayu-principles-title {

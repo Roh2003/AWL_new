@@ -418,6 +418,17 @@
     gap: 20px;
   }
 
+  .contact-header-left h1 {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .contact-header-right p {
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.2px;
+  }
+
   .contact-card-left,
   .contact-card-right {
     padding: 32px 24px;

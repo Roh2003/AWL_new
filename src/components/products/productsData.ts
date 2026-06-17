@@ -91,7 +91,7 @@ export const PRODUCTS_DATA: ProductTab[] = [
         id: "brain-fuel-capsules",
         subLabel: "BRAIN & COGNITION",
         title: "Brain Fuel Capsules",
-        image: "",
+        image: "assets/images/products/suppliments/supp_1.png",
         keyBenefits: [
           "Enhances focus, mental clarity, and memory retention",
           "Supports daily cognitive function and energy",
@@ -110,7 +110,7 @@ export const PRODUCTS_DATA: ProductTab[] = [
         id: "gut-fuel-capsules",
         subLabel: "GUT HEALTH",
         title: "Gut Fuel Capsules",
-        image: "",
+        image: "assets/images/products/suppliments/supp_2.png",
         keyBenefits: [
           "Supports healthy digestion and nutrient absorption",
           "Helps maintain a balanced gut microbiome",
@@ -129,7 +129,7 @@ export const PRODUCTS_DATA: ProductTab[] = [
         id: "liver-detox-tablets",
         subLabel: "LIVER & DETOX",
         title: "Liver Detox Tablets",
-        image: "",
+        image: "assets/images/products/suppliments/supp_3.png",
         keyBenefits: [
           "Promotes natural liver detoxification and cleansing",
           "Supports healthy liver enzyme levels",
@@ -148,7 +148,7 @@ export const PRODUCTS_DATA: ProductTab[] = [
         id: "respiratory-health",
         subLabel: "LUNG CARE TABLETS",
         title: "Respiratory Health",
-        image: "",
+        image: "assets/images/products/suppliments/supp_4.png",
         keyBenefits: [
           "Supports lung function and clear breathing",
           "Helps soothe respiratory tracts",
@@ -167,7 +167,7 @@ export const PRODUCTS_DATA: ProductTab[] = [
         id: "immune-care-tablets",
         subLabel: "IMMUNITY",
         title: "Immune Care Tablets",
-        image: "",
+        image: "assets/images/products/suppliments/supp_5.png",
         keyBenefits: [
           "Boosts daily immune system defenses",
           "Packed with natural antioxidants",
@@ -186,7 +186,7 @@ export const PRODUCTS_DATA: ProductTab[] = [
         id: "dia-shield-tablets",
         subLabel: "BLOOD SUGAR SUPPORT",
         title: "Dia Shield Tablets",
-        image: "",
+        image: "assets/images/products/suppliments/supp_6.png",
         keyBenefits: [
           "Helps maintain healthy blood sugar levels",
           "Supports healthy insulin function",
@@ -205,7 +205,7 @@ export const PRODUCTS_DATA: ProductTab[] = [
         id: "calcium-vitamins-tablets",
         subLabel: "BONE & JOINT HEALTH",
         title: "Calcium+ Vitamins Tablets",
-        image: "",
+        image: "assets/images/products/suppliments/supp_7.png",
         keyBenefits: [
           "Supports bone density and joint strength",
           "Enhances calcium absorption with Vitamin D3",

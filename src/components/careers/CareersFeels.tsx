@@ -44,7 +44,8 @@ export function CareersFeels() {
         <h2 className="careers-feels-heading">What It Actually Feels Like To Work Here</h2>
       </div>
 
-      <div className="careers-feels-slider-container reveal d1">
+      {/* Desktop Slider View */}
+      <div className="careers-feels-slider-container desktop-only reveal d1">
         <div
           className="careers-feels-slider-track"
           style={{
@@ -89,6 +90,40 @@ export function CareersFeels() {
               aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
+        </div>
+      </div>
+
+      {/* Mobile Thumbnail Grid View */}
+      <div className="careers-feels-mobile-container mobile-only reveal d1">
+        {/* Main Active Photo */}
+        <div className="feels-mobile-main-img">
+          <img src={testimonialsData[activeIdx].img} alt={testimonialsData[activeIdx].name} />
+        </div>
+
+        {/* Quote Card */}
+        <div className="feels-mobile-quote-card">
+          <p className="feels-mobile-quote">“{testimonialsData[activeIdx].quote}”</p>
+          <div className="feels-mobile-author">
+            <span className="feels-mobile-name">{testimonialsData[activeIdx].name}</span>
+            <span className="feels-mobile-role">{testimonialsData[activeIdx].role}</span>
+          </div>
+        </div>
+
+        {/* Thumbnail Navigation */}
+        <div className="feels-mobile-thumbnails">
+          {testimonialsData.map((t, idx) => {
+            if (idx === activeIdx) return null; // Hide active testimonial from thumbnails
+            return (
+              <button
+                key={t.id}
+                className="feels-mobile-thumb-btn"
+                onClick={() => setActiveIdx(idx)}
+                aria-label={`Show testimonial from ${t.name}`}
+              >
+                <img src={t.img} alt={t.name} />
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

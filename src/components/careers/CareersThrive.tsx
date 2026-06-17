@@ -13,7 +13,7 @@ export function CareersThrive() {
         {/* Column 1 */}
         <div className="careers-thrive-col col-1">
           <div className="careers-thrive-img-box reveal">
-            <img src="/assets/images/careers/careers_meeting.png" alt="Business Meeting" />
+            <img src="/assets/images/careers/career_1.png" alt="Business Meeting" />
           </div>
           <div className="careers-thrive-card reveal d1">
             <div className="careers-thrive-icon-box">
@@ -45,14 +45,14 @@ export function CareersThrive() {
             </p>
           </div>
           <div className="careers-thrive-img-box reveal d1">
-            <img src="/assets/images/careers/careers_laptop.png" alt="Collaborating at work" />
+            <img src="/assets/images/careers/career_2.png" alt="Collaborating at work" />
           </div>
         </div>
 
         {/* Column 3 (Tall Image) */}
         <div className="careers-thrive-col col-3 tall reveal">
           <div className="careers-thrive-img-box tall-img">
-            <img src="/assets/images/careers/careers_outdoor.png" alt="Colleagues laughing" />
+            <img src="/assets/images/careers/career_3.png" alt="Colleagues laughing" />
           </div>
         </div>
 

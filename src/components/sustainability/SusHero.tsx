@@ -7,18 +7,30 @@ export function SusHero() {
       <div className="sus-hero-bg" />
 
       {/* ── Video / image slot ──────────────────────────────────────────────
-          Replace the <div className="sus-hero-video-slot empty"> with:
+          Replace the <div className="sus-hero-video-slot empty"> with: */}
 
-          <div className="sus-hero-video-slot">
-            <video autoPlay muted loop playsInline>
-              <source src="/assets/videos/sustainability-hero.mp4" type="video/mp4" />
-            </video>
-          </div>
-
+      <div className="sus-hero-video-slot">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          style={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            width: "100vh",
+            height: "100vw",
+            transform: "translate(-50%, -50%) rotate(-90deg)",
+            objectFit: "cover",
+          }}
+        >
+          <source src="/assets/images/sustainability/sus_bg_video.mp4" type="video/mp4" />
+        </video>
+      </div>
+      {/* 
           once the hero video asset is ready.
       ────────────────────────────────────────────────────────────────────── */}
-      <div className="sus-hero-video-slot empty" />
-
       <div className="sus-hero-overlay" />
 
       <div className="sus-hero-content">

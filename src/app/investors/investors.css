@@ -1,0 +1,607 @@
+/* ===== INVESTORS PAGE STYLING ===== */
+
+
+.investors-page-wrapper {
+  max-width: 1700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 48px 80px;
+  display: flex;
+  gap: 48px;
+  font-family: 'Manrope', sans-serif;
+  color: var(--black);
+  box-sizing: border-box;
+}
+
+/* --- Sidebar (Desktop) --- */
+.investors-sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 140px;
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+  padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Custom Scrollbar for Sidebar */
+.investors-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.investors-sidebar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.investors-sidebar::-webkit-scrollbar-thumb {
+  background: var(--gray-200);
+  border-radius: 2px;
+}
+
+.investors-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-500);
+}
+
+.sidebar-item {
+  width: 100%;
+  padding: 14px 20px;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--black);
+}
+
+.sidebar-item.active {
+  background: var(--lime);
+  color: var(--black);
+  font-weight: 700;
+}
+
+/* --- Content Panel (Desktop) --- */
+.investors-content {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.investors-header-block {
+  border-bottom: 1px solid var(--gray-200);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.investors-category-title {
+  font-family: var(--font-display), 'Inter', sans-serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.investors-category-desc {
+  font-family: Manrope;
+  font-size: 18px;
+  color: var(--gray-700);
+  line-height: 1.6;
+  max-width: 1200px;
+}
+
+/* Search Box Container */
+.investors-search-box {
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 500px;
+}
+
+.investors-search-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  font-size: 18px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.investors-search-input:focus {
+  border-color: var(--lime-dark);
+  box-shadow: 0 0 0 3px rgba(212, 255, 158, 0.2);
+}
+
+.investors-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-500);
+  pointer-events: none;
+}
+
+/* --- Years Tabs --- */
+.years-tabs-container {
+  margin-bottom: 24px;
+}
+
+.years-tabs-label {
+  font-size: 15px;
+  font-family: Manrope;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-500);
+  margin-bottom: 12px;
+}
+
+.years-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.year-tab {
+  padding: 8px 16px;
+  background: #ffffff;
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  font-size: 15px;
+  font-family: Manrope;
+  font-weight: 600;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.year-tab:hover {
+  background: var(--gray-100);
+  border-color: var(--gray-500);
+}
+
+.year-tab.active {
+  background: var(--lime);
+  color: var(--black);
+  border-color: var(--lime-dark);
+}
+
+/* --- Table of Documents --- */
+.document-table-wrapper {
+  background: #ffffff;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.document-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.document-table th {
+  background: var(--gray-100);
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-500);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.document-table td {
+  font-family: Manrope;
+  font-size: 14px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--gray-100);
+  vertical-align: middle;
+}
+
+.document-table tr:last-child td {
+  border-bottom: none;
+}
+
+.document-table tr:hover td {
+  background: rgba(0, 0, 0, 0.005);
+}
+
+.doc-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #1a56db;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+
+.doc-link:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+.doc-link-icon {
+  flex-shrink: 0;
+  color: var(--gray-500);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.doc-link:hover .doc-link-icon {
+  transform: translateY(2px);
+  color: #1e40af;
+}
+
+.doc-date {
+  color: var(--gray-700);
+}
+
+.doc-size {
+  color: var(--gray-500);
+  font-size: 13px;
+}
+
+.doc-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  background: var(--gray-100);
+  color: var(--black);
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 8px;
+}
+
+.doc-action-btn:hover {
+  background: var(--lime);
+  transform: translateY(-1px);
+}
+
+.no-documents {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--gray-500);
+  font-size: 15px;
+}
+
+/* Mobile Accordions Container */
+.investors-mobile-accordions {
+  display: none;
+  width: 100%;
+}
+
+/* --- Toast Notification --- */
+.download-toast {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid rgba(212, 255, 158, 0.3);
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1001;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.download-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.download-toast-icon {
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+}
+
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+@media (max-width: 1024px) {
+  .investors-page-wrapper {
+    flex-direction: column;
+    padding: 40px 24px 60px;
+    gap: 32px;
+  }
+
+  .investors-sidebar {
+    display: none;
+  }
+
+  .investors-content {
+    display: none;
+    /* We show mobile accordion instead */
+  }
+
+  .investors-mobile-accordions {
+    display: block;
+  }
+
+  .mobile-header-block {
+    margin-bottom: 24px;
+  }
+
+  .accordion-item {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+  }
+
+  .accordion-header {
+    width: 100%;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--black);
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  .accordion-header:hover {
+    background: var(--gray-100);
+  }
+
+  .accordion-header.expanded {
+    background: var(--lime);
+  }
+
+  .accordion-arrow {
+    color: var(--black);
+    transition: transform 0.2s ease;
+  }
+
+  .accordion-header.expanded .accordion-arrow {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    border-top: 1px solid var(--gray-200);
+    padding: 20px 16px;
+    background: #ffffff;
+  }
+
+  /* Make table look responsive inside accordion */
+  .document-table th,
+  .document-table td {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+
+  .document-table th:nth-child(2),
+  .document-table td:nth-child(2) {
+    display: none;
+    /* Hide date on small mobile */
+  }
+
+  .document-table th:nth-child(3),
+  .document-table td:nth-child(3) {
+    display: none;
+    /* Hide size on small mobile */
+  }
+}
+
+/* ================= HERO SECTION ================= */
+.investors-hero {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 200px 8% 80px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.investors-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.investors-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+  z-index: 1;
+}
+
+.investors-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  color: #ffffff;
+}
+
+.investors-hero-title {
+  font-family: var(--font-display), 'Inter', sans-serif;
+  font-size: clamp(38px, 5.5vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.investors-hero-desc {
+  font-family: var(--font-body), sans-serif;
+  font-size: clamp(16px, 1.6vw, 21px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  max-width: 780px;
+}
+
+/* ================= GRIEVANCE SECTION ================= */
+.investors-grievance {
+  width: 100%;
+  max-width: 1700px;
+  margin: 0 auto 120px;
+  padding: 0 48px;
+  box-sizing: border-box;
+}
+
+.grievance-banner {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.grievance-banner-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.grievance-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.7);
+  z-index: 1;
+}
+
+.grievance-banner-title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display), 'Inter', sans-serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--lime);
+  /* Light lime green */
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.grievance-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 100%;
+}
+
+.grievance-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.grievance-card-header {
+  background: #E9FFCE;
+  /* Light lime green background */
+  color: var(--black);
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.grievance-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 4px;
+}
+
+.grievance-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--gray-500);
+}
+
+.field-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--black);
+  line-height: 1.5;
+}
+
+.field-value a {
+  color: var(--black);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.field-value a:hover {
+  color: var(--gray-700);
+}
+
+/* Responsiveness for Grievance Section */
+@media (max-width: 1024px) {
+  .investors-hero {
+    min-height: 400px;
+    padding: 140px 24px 60px;
+  }
+
+  .investors-grievance {
+    padding: 0 24px 80px;
+    margin-bottom: 0;
+  }
+
+  .grievance-banner {
+    height: 180px;
+    margin-bottom: 40px;
+  }
+
+  .grievance-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

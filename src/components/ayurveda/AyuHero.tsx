@@ -10,7 +10,7 @@ export function AyuHero() {
       {/* Hero Media Slot */}
       <div className="ayu-hero-video-slot">
         {/* Placeholder image from public folder */}
-        <img src="/assets/images/beyond_future.png" alt="Ayurveda Modern Lab" />
+        <img src="/assets/images/ayurveda/ayu_bg.jpg" alt="Ayurveda Modern Lab" />
       </div>
 
       {/* Cinematic dark overlay */}

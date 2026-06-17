@@ -4,7 +4,7 @@ export function CareersHero() {
   return (
     <section className="careers-hero">
       <div className="careers-hero-bg">
-        <img src="/assets/images/careers/careers_hero.png" alt="Careers at Aayush Wellness" />
+        <img src="/assets/images/careers/career_bg.jpg" alt="Careers at Aayush Wellness" />
       </div>
       <div className="careers-hero-overlay" />
       <div className="careers-hero-content">

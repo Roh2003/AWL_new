@@ -9,6 +9,7 @@ const slides = [
     emoji: "👨‍👩‍👧‍👦",
     title: "Combating malnutrition in underserved communities",
     body: "Malnutrition remains one of India's most persistent and preventable health crises. Aayush Wellness addresses this through targeted nutritional supplement programmes and community food donation drives - delivering high-quality, science-backed nutrition to children and families in underserved regions where food security and health access remain critical challenges.",
+    image: "/assets/sustainability/community-bg.jpg",
   },
   {
     bg: "linear-gradient(135deg,#1a2a1a 0%,#2a3a28 40%,#0e1a0e 100%)",
@@ -16,6 +17,7 @@ const slides = [
     emoji: "🌺",
     title: "Empowering women's health across rural India",
     body: "Through dedicated women's wellness programmes, Aayush reaches mothers and young women in Tier 3 and Tier 4 cities with preventive health education, nutritional supplementation, and access to affordable healthcare solutions that address conditions commonly neglected in underserved communities.",
+    image: "/assets/sustainability/community-bg.jpg",
   },
   {
     bg: "linear-gradient(135deg,#1a1a2a 0%,#282838 40%,#0e0e1a 100%)",
@@ -23,6 +25,7 @@ const slides = [
     emoji: "📚",
     title: "Health literacy & preventive awareness campaigns",
     body: "Aayush Wellness drives grassroots health literacy initiatives that educate communities on preventive care, nutrition, and holistic well-being - shifting the healthcare conversation from reactive treatment to proactive lifestyle choices across every socioeconomic strata.",
+    image: "/assets/sustainability/community-bg.jpg",
   },
 ];
 
@@ -69,13 +72,28 @@ export function CommunityImpact() {
                     display: "flex", alignItems: "center", justifyContent: "center",
                   }}
                 >
+                  {slide.image && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        backgroundImage: `url('${slide.image}')`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        opacity: 0.45,
+                        zIndex: 0,
+                      }}
+                    />
+                  )}
                   <div
                     style={{
                       position: "absolute", inset: 0,
                       background: `radial-gradient(ellipse 60% 80% at 45% 55%, ${slide.radial} 0%, transparent 65%)`,
+                      zIndex: 1,
                     }}
                   />
-                  <span style={{ fontSize: 100, position: "relative", zIndex: 1 }}>
+                  <span style={{ fontSize: 100, position: "relative", zIndex: 2 }}>
                     {slide.emoji}
                   </span>
                 </div>

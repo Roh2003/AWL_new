@@ -74,20 +74,11 @@ export function AyuPrinciples() {
       <AyuTag label="Our Approach" theme="light" className="reveal" />
       {/* Desktop Layout */}
       <div className="ayu-principles-grid ayu-principles-desktop-only">
-        {/* Left Side: Overlapping Images and Badge */}
+        {/* Left Side: Single Image Wrap */}
         <div className="ayu-principles-left">
           <div className="ayu-principles-img-wrap">
-            <div className="ayu-principles-img-top">
-              <img src="/assets/images/product_nutrition.png" alt="Vegan Capsules" />
-            </div>
-
-            <div className="ayu-principles-badge">
-              <span>100%</span>
-              TRANSPARENCY
-            </div>
-
-            <div className="ayu-principles-img-bottom">
-              <img src="/assets/images/product_beauty.png" alt="Lotus Leaf" />
+            <div className="ayu-principles-single-img">
+              <img src="/assets/images/ayurveda/ayu_1.png" alt="Vegan Capsules" />
             </div>
           </div>
         </div>
@@ -143,17 +134,8 @@ export function AyuPrinciples() {
 
         <div className="ayu-principles-left">
           <div className="ayu-principles-img-wrap">
-            <div className="ayu-principles-img-top">
-              <img src="/assets/images/product_nutrition.png" alt="Vegan Capsules" />
-            </div>
-
-            <div className="ayu-principles-badge">
-              <span>100%</span>
-              TRANSPARENCY
-            </div>
-
-            <div className="ayu-principles-img-bottom">
-              <img src="/assets/images/product_beauty.png" alt="Lotus Leaf" />
+            <div className="ayu-principles-single-img">
+              <img src="/assets/images/ayurveda/ayu_1.png" alt="Vegan Capsules" />
             </div>
           </div>
         </div>

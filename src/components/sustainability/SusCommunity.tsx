@@ -20,14 +20,14 @@ const SLIDES: Slide[] = [
   {
     bgGradient: "linear-gradient(135deg,#1a2a1a 0%,#2a3a28 40%,#0e1a0e 100%)",
     dotGradient: "radial-gradient(ellipse 60% 80% at 50% 50%,rgba(60,120,60,.4) 0%,transparent 65%)",
-    emoji: "🌺",
+    image: "/assets/images/sustainability/imapct-2.png",
     title: "Empowering women's health across rural India",
     body: "Through dedicated women's wellness programmes, Aayush reaches mothers and young women in Tier 3 and Tier 4 cities with preventive health education, nutritional supplementation, and access to affordable healthcare solutions that address conditions commonly neglected in underserved communities.",
   },
   {
     bgGradient: "linear-gradient(135deg,#1a1a2a 0%,#282838 40%,#0e0e1a 100%)",
     dotGradient: "radial-gradient(ellipse 60% 80% at 50% 50%,rgba(60,60,120,.4) 0%,transparent 65%)",
-    emoji: "📚",
+    image: "/assets/images/sustainability/impact-1.png",
     title: "Health literacy & preventive awareness campaigns",
     body: "Aayush Wellness drives grassroots health literacy initiatives that educate communities on preventive care, nutrition, and holistic well-being - shifting the healthcare conversation from reactive treatment to proactive lifestyle choices across every socioeconomic strata.",
   },

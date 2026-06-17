@@ -148,8 +148,7 @@ export function AboutVision() {
             style={{
               opacity: card1Opacity,
               transform: `translate(-50%, calc(-50% + ${card1TranslateY}px))`,
-              pointerEvents: card1Opacity > 0.1 ? "auto" : "none",
-              display: card1Opacity > 0 ? "grid" : "none"
+              pointerEvents: card1Opacity > 0.1 ? "auto" : "none"
             }}
           >
             <div className="vision-label">Our Vision</div>
@@ -167,8 +166,7 @@ export function AboutVision() {
             style={{
               opacity: card2Opacity,
               transform: `translate(-50%, calc(-50% + ${card2TranslateY}px))`,
-              pointerEvents: card2Opacity > 0.1 ? "auto" : "none",
-              display: card2Opacity > 0 ? "grid" : "none"
+              pointerEvents: card2Opacity > 0.1 ? "auto" : "none"
             }}
           >
             <div className="purpose-label">Our Purpose</div>

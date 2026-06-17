@@ -42,7 +42,7 @@ export function AccApplication() {
             {/* Row 1 - Founder & Company */}
             <div className="acc-form-row">
               <div className="acc-form-group">
-                <label className="acc-form-label" htmlFor="founderName">Founder Name</label>
+                <label className="acc-form-label" htmlFor="founderName">Founder Name </label>
                 <input id="founderName" className="acc-form-input" type="text" placeholder="John Doe" required />
               </div>
               <div className="acc-form-group">
