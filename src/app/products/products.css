@@ -108,12 +108,12 @@
 
 .tabs-nav-wrapper {
   display: flex;
-  gap: 250px;
+  gap: clamp(60px, 8vw, 185px);
 }
 
 .tab-btn {
   font-family: var(--font-display), 'Inter Display', sans-serif;
-  font-size: 28px;
+  font-size: clamp(20px, 2vw, 28px);
   font-weight: 600;
   color: var(--text-primary);
   background: transparent;
@@ -123,6 +123,7 @@
   position: relative;
   transition: color 0.3s ease;
   outline: none;
+  white-space: nowrap;
 }
 
 .tab-btn:hover {
@@ -227,9 +228,9 @@
   position: absolute;
   top: 24px;
   right: 24px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 81px;
+  height: 65px;
+  border-radius: 32px;
   background-color: var(--lime-light);
   color: var(--text-primary);
   border: none;
@@ -667,12 +668,12 @@ body:has(.products-page) #navbar .hamburger-line {
   }
 
   .tabs-nav-wrapper {
-    gap: 40px;
+    gap: 48px;
     padding: 0 16px;
   }
 
   .tab-btn {
-    font-size: 16px;
+    font-size: 18px;
     white-space: nowrap;
     padding: 16px 4px;
   }

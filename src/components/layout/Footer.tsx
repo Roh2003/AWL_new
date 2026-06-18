@@ -1,7 +1,14 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname && pathname.startsWith("/admin")) {
+    return null;
+  }
   return (
     <footer>
       <div className="footer-top">
@@ -43,7 +50,6 @@ export function Footer() {
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/ayurveda">Ayurveda Reinvented</Link></li>
             <li><Link href="/sustainability">Sustainability &amp; Impact</Link></li>
-            <li><Link href="/reach">Our Reach</Link></li>
             <li><Link href="/accelerator">Accelerator</Link></li>
             <li><Link href="/investors">Investor Relations</Link></li>
             <li><Link href="/news">In The News</Link></li>
@@ -58,8 +64,11 @@ export function Footer() {
             <li><Link href="/products">Wellness Gummies</Link></li>
             <li><Link href="/products">Health Supplements</Link></li>
             <li><Link href="/products">Herbal Masala</Link></li>
+            <li><Link href="/products">Shilajit Drops</Link></li>
           </ul>
-          <Link href="/store" className="footer-store-btn">Visit Our Store →</Link>
+          <Link href="/store" className="footer-store-btn">Visit Our Store <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+            <path d="M16.9706 24.0415L24.0416 16.9705L16.9706 9.89941M24.0416 16.9705H9.89949" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg></Link>
         </div>
       </div>
 

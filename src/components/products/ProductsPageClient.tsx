@@ -166,7 +166,31 @@ export function ProductsPageClient() {
 
   // Modal control handlers
   const handleOpenDetails = (product: Product) => {
-    if (product.keyBenefits) {
+    if (activeTab === "herbal-masala") {
+      const masalaProduct: Product = {
+        ...product,
+        keyBenefits: [
+          "No Tobacco",
+          "No Supari",
+          "No Chemicals",
+          "No Harmful Additives",
+          "100% Ayurvedic Botanicals"
+        ],
+        consumerNeed: "Aayush Herbal Masala is a premium, tobacco-free and supari-free formulation - crafted with Ayurvedic botanicals to deliver an authentic, richly flavoured experience that actively supports oral health, digestion, and overall well-being. A genuinely intelligent alternative for millions choosing to make a mindful switch.",
+        ingredientsList: [
+          { name: "Kaunch Beej", image: "" },
+          { name: "Amla", image: "" },
+          { name: "Ashwagandha", image: "" },
+          { name: "Mulethi", image: "" },
+          { name: "Kesar", image: "" },
+          { name: "Cardamom & Tamarind Seeds", image: "" }
+        ],
+        thumbnails: []
+      };
+      setSelectedProduct(masalaProduct);
+      setActiveModalImage(product.image);
+      document.body.classList.add("modal-open");
+    } else {
       setSelectedProduct(product);
       setActiveModalImage(product.image);
       document.body.classList.add("modal-open");
@@ -234,6 +258,10 @@ export function ProductsPageClient() {
     if (normName.includes("vitamin d3")) return "linear-gradient(135deg, #fef3c7, #fcd34d)";
     if (normName.includes("magnesium")) return "linear-gradient(135deg, #f1f5f9, #cbd5e1)";
     if (normName.includes("zinc")) return "linear-gradient(135deg, #f5f5f4, #d6d3d1)";
+    if (normName.includes("kaunch beej")) return "linear-gradient(135deg, #e0e7ff, #a5b4fc)";
+    if (normName.includes("mulethi")) return "linear-gradient(135deg, #fefce8, #fde047)";
+    if (normName.includes("kesar")) return "linear-gradient(135deg, #ffe7d5, #f97316)";
+    if (normName.includes("cardamom")) return "linear-gradient(135deg, #dcfce7, #86efac)";
 
     return "linear-gradient(135deg, #f3f4f6, #e5e7eb)";
   };
@@ -323,28 +351,26 @@ export function ProductsPageClient() {
         <div className={`products-cards-grid grid-${activeTab}`}>
           {currentTab.products.map((product) => {
             const hasImage = product.image && product.image.trim() !== "";
-            const hasDetails = !!product.keyBenefits;
+            const hasDetails = true;
             return (
               <div
                 key={product.id}
-                className={`prod-card ${hasDetails ? "has-details" : ""}`}
+                className="prod-card has-details"
                 onClick={() => handleOpenDetails(product)}
               >
-                {/* Plus Icon Button in Top-Right (No plus button for Herbal Masala tab as per mockup) */}
-                {activeTab !== "herbal-masala" && (
-                  <button
-                    className="prod-plus-btn"
-                    aria-label="View product details"
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card container onClick triggering twice
-                      handleOpenDetails(product);
-                    }}
-                  >
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M7 1V13M1 7H13" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-                    </svg>
-                  </button>
-                )}
+                {/* Plus Icon Button in Top-Right */}
+                <button
+                  className="prod-plus-btn"
+                  aria-label="View product details"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent card container onClick triggering twice
+                    handleOpenDetails(product);
+                  }}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M11.25 12.75H5.5V11.25H11.25V5.5H12.75V11.25H18.5V12.75H12.75V18.5H11.25V12.75Z" fill="#050505" />
+                  </svg>
+                </button>
 
                 {/* Product Image Box */}
                 <div className="prod-image-wrapper">
@@ -378,24 +404,22 @@ export function ProductsPageClient() {
       {/* Conditionally Rendered Bottom Banners */}
 
       {/* 1. Explore full range banner for Wellness Gummies Tab */}
-      {activeTab === "wellness-gummies" && (
-        <section className="gummies-banner-sec">
-          <div className="gummies-banner-card">
-            <div className="banner-left">
-              <h2 className="banner-title">Explore the full product range.</h2>
-              <p className="banner-desc">
-                All Aayush Wellness products are available directly through our online store - with
-                pan-India delivery and multiple format options to suit individual and institutional requirements.
-              </p>
-            </div>
-            <div className="banner-right">
-              <Link href="/store" className="banner-cta-btn">
-                Visit Our Store &rarr;
-              </Link>
-            </div>
+      <section className="gummies-banner-sec">
+        <div className="gummies-banner-card">
+          <div className="banner-left">
+            <h2 className="banner-title">Explore the full product range.</h2>
+            <p className="banner-desc">
+              All Aayush Wellness products are available directly through our online store - with
+              pan-India delivery and multiple format options to suit individual and institutional requirements.
+            </p>
           </div>
-        </section>
-      )}
+          <div className="banner-right">
+            <Link href="/store" className="banner-cta-btn">
+              Visit Our Store &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* 2. Key ingredients black banner for Herbal Masala Tab */}
       {activeTab === "herbal-masala" && (

@@ -251,6 +251,35 @@ export const PRODUCTS_DATA: ProductTab[] = [
       },
     ],
   },
+  {
+    id: "shilajit-drops",
+    name: "Shilajit Drops",
+    sectionTitle: "The Himalayan Elixir for Peak Vitality.",
+    sectionSubtitle: "Aayush Shilajit Drops combine 100% pure, lab-tested Himalayan Shilajit extract with Ayurvedicwellness botanicals in a convenient liquid format. Powered by Fulvic Acid, this premium formulation enhances energy, stamina, cognitive function, and overall vitality—naturally and effectively.",
+    products: [
+      {
+        id: "paan-masala-flavour",
+        title: "Paan Masala Flavour",
+        description: "The timeless classic - rich, aromatic, and refreshing. The authentic pan masala experience, reimagined with complete herbal purity.",
+        image: "/assets/images/products/pan_masala_1.png",
+
+      },
+      {
+        id: "gutka-flavour",
+        title: "Gutka Flavour",
+        description: "Bold, familiar intensity - specifically designed for those transitioning away from harmful products. Delivers complete satisfaction with zero compromise on safety or well-being.",
+        image: "/assets/images/products/pan_masala_2.png",
+
+      },
+      {
+        id: "royal-tobacco-flavour",
+        title: "Royal Tobacco Flavour",
+        description: "A premium, full-bodied blend for the discerning palate. Rich depth and sophisticated character - authentically flavoured, completely tobacco-free.",
+        image: "/assets/images/products/pan_masala_3.png",
+
+      },
+    ],
+  },
 ];
 
 export const HERBAL_MASALA_FEATURES = [

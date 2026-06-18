@@ -89,7 +89,9 @@ export function BuildingFuture() {
                     <div className="beyond-item-body">
                       <p className="beyond-item-desc">{item.description}</p>
                       <a href={item.link} className="beyond-item-read">
-                        Read More →
+                        Read More <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                          <path d="M16.9706 24.0415L24.0416 16.9705L16.9706 9.89941M24.0416 16.9705H9.89949" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
                       </a>
                     </div>
                   </div>
@@ -97,7 +99,9 @@ export function BuildingFuture() {
                   /* Closed state: title full-width with arrow */
                   <div className="beyond-item-header">
                     <span className="beyond-item-title">{item.title}</span>
-                    <span className="beyond-item-arrow">→</span>
+                    <span className="beyond-item-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                      <path d="M16.9706 24.0415L24.0416 16.9705L16.9706 9.89941M24.0416 16.9705H9.89949" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg></span>
                   </div>
                 )}
               </div>

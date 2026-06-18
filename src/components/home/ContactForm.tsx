@@ -97,7 +97,9 @@ export function ContactForm() {
 
               <button type="submit" className="contact-submit-btn">
                 <span>Submit message</span>
-                <span className="arrow">→</span>
+                <span className="arrow"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+                  <path d="M16.9706 24.0415L24.0416 16.9705L16.9706 9.89941M24.0416 16.9705H9.89949" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg></span>
               </button>
             </form>
           </div>

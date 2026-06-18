@@ -10,6 +10,10 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
+  if (pathname && pathname.startsWith("/admin")) {
+    return null;
+  }
+
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
@@ -109,7 +113,7 @@ export function Header() {
             </Link>
           </li>
           <li className="has-dropdown">
-            <Link href="/about" className={isActive("/about") || isActive("/sustainability") || isActive("/careers") ? "active" : ""}>
+            <Link href="/about" className={isActive("/about") || isActive("/sustainability") || isActive("/careers") || isActive("/ayurveda") ? "active" : ""}>
               Company <ChevronDown />
             </Link>
             <ul className="dropdown-menu">
@@ -117,7 +121,10 @@ export function Header() {
                 <Link href="/about">About Us</Link>
               </li>
               <li>
-                <Link href="/sustainability">Sustainability</Link>
+                <Link href="/ayurveda">Ayurveda Reinvented</Link>
+              </li>
+              <li>
+                <Link href="/sustainability">Sustainability & Impact</Link>
               </li>
               <li>
                 <Link href="/careers">Careers</Link>
@@ -133,9 +140,6 @@ export function Header() {
                 <Link href="/products">All Products</Link>
               </li>
               <li>
-                <Link href="/ayurveda">Ayurveda & Science</Link>
-              </li>
-              <li>
                 <Link href="/store">Online Store</Link>
               </li>
             </ul>
@@ -148,6 +152,11 @@ export function Header() {
           <li>
             <Link href="/investors" className={isActive("/investors") ? "active" : ""}>
               Investors
+            </Link>
+          </li>
+          <li>
+            <Link href="/news" className={isActive("/news") ? "active" : ""}>
+              News
             </Link>
           </li>
         </ul>
@@ -188,8 +197,13 @@ export function Header() {
               </Link>
             </li>
             <li>
+              <Link href="/ayurveda" className={isActive("/ayurveda") ? "active" : ""}>
+                Ayurveda Reinvented
+              </Link>
+            </li>
+            <li>
               <Link href="/sustainability" className={isActive("/sustainability") ? "active" : ""}>
-                Sustainability
+                Sustainability & Impact
               </Link>
             </li>
             <li>
@@ -226,6 +240,11 @@ export function Header() {
             <li>
               <Link href="/investors" className={isActive("/investors") ? "active" : ""}>
                 Investors
+              </Link>
+            </li>
+            <li>
+              <Link href="/news" className={isActive("/news") ? "active" : ""}>
+                News
               </Link>
             </li>
           </ul>

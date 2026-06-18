@@ -173,7 +173,6 @@ export function ProductCategories() {
               <div className="product-img-inner">
                 <img src={product.image} alt={product.name} />
               </div>
-              <a href={product.link} className="product-card-link">↗</a>
             </div>
             <div className="product-body">
               <h3 className="product-name">{product.name}</h3>

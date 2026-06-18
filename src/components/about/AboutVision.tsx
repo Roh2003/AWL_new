@@ -62,7 +62,17 @@ export function AboutVision() {
 
         {/* Purpose Card Block */}
         <div className="vision-mobile-section">
-          <div className="vision-mobile-bg leaf-img"></div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="vision-mobile-bg leaf-img"
+            poster="/assets/images/about/swimmer_pool.png"
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          >
+            <source src="/assets/images/about/about_vision_bg_2.mp4" type="video/mp4" />
+          </video>
           <div className="vision-mobile-overlay"></div>
           <div className="vision-mobile-card purpose-theme">
             <div className="purpose-label">Our Purpose</div>
@@ -136,7 +146,17 @@ export function AboutVision() {
           className="vision-bg-slide leaf-slide"
           style={{ transform: `translateY(${bg2TranslateY}%)` }}
         >
-          <div className="vision-bg-img leaf-img"></div>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="vision-bg-img leaf-img"
+            poster="/assets/images/about/swimmer_pool.png"
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          >
+            <source src="/assets/images/about/about_vision_bg_2.mp4" type="video/mp4" />
+          </video>
           <div className="vision-overlay"></div>
         </div>
 

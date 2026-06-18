@@ -993,8 +993,8 @@ section {
   background: var(--lime);
   color: var(--black);
   border-radius: 50px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   text-decoration: none;
   transition: background 0.2s;
 }
