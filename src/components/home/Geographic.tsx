@@ -18,9 +18,26 @@ export function Geographic() {
         </div>
       </div>
 
-      {/* Map image placeholder - replace src with real image */}
+      {/* Map video */}
       <div className="reach-map reveal">
-        {/* <img src="/your-map-image.png" alt="Pan-India Map" className="reach-map-img" /> */}
+        {/* Desktop Map Video */}
+        <video
+          src="/assets/images/Map Desktop View.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="reach-map-video desktop-map-video"
+        />
+        {/* Mobile Map Video */}
+        <video
+          src="/Map Mobile View.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="reach-map-video mobile-map-video"
+        />
       </div>
     </section>
   );

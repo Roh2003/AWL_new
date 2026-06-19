@@ -20,6 +20,7 @@ interface Category {
   years?: string[];
   documents?: DocumentItem[];
   documentsByYear?: Record<string, DocumentItem[]>;
+  documentsByYearAndQuarter?: Record<string, Record<string, DocumentItem[]>>;
 }
 
 // Financial Years list used globally across categories with years
@@ -246,18 +247,35 @@ const categoriesData: Category[] = [
     desc: "Compliance reports, shareholding patterns, and statutory disclosures submitted under SEBI Listing Obligations and Disclosure Requirements (LODR).",
     hasYears: true,
     years: FINANCIAL_YEARS,
-    documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
-      const startYear = year.substring(3, 5);
-      const endYear = year.substring(6, 8);
-      acc[year] = [
-        { id: `bse-reg33-${year}`, name: `Reg_33_Financial_Results_Q4_FY${endYear}.pdf`, date: `20${endYear}-05-25`, size: "1.1 MB", url: "#" },
-        { id: `bse-reg7-${year}`, name: `Reg_7(3)_Compliance_Certificate_FY${endYear}.pdf`, date: `20${endYear}-04-18`, size: "210 KB", url: "#" },
-        { id: `bse-reg40-${year}`, name: `Reg_40(9)_Compliance_Certificate_FY${endYear}.pdf`, date: `20${endYear}-04-18`, size: "195 KB", url: "#" },
-        { id: `bse-shp-${year}`, name: `Shareholding_Pattern_Q4_FY${endYear}.pdf`, date: `20${endYear}-04-15`, size: "820 KB", url: "#" },
-        { id: `bse-gov-${year}`, name: `Corporate_Governance_Report_Q4_FY${endYear}.pdf`, date: `20${endYear}-04-15`, size: "940 KB", url: "#" },
-      ];
+    documentsByYearAndQuarter: FINANCIAL_YEARS.reduce((acc, year) => {
+      const startYear = year.substring(5, 7); // "24" for "FY 2024-25"
+      const endYear = year.substring(8, 10);   // "25" for "FY 2024-25"
+      acc[year] = {
+        "Q1": [
+          { id: `bse-reg33-q1-${year}`, name: `Reg_33_Financial_Results_Q1_FY${endYear}.pdf`, date: `20${startYear}-08-14`, size: "890 KB", url: "#" },
+          { id: `bse-shp-q1-${year}`, name: `Shareholding_Pattern_Q1_FY${endYear}.pdf`, date: `20${startYear}-07-15`, size: "820 KB", url: "#" },
+          { id: `bse-gov-q1-${year}`, name: `Corporate_Governance_Report_Q1_FY${endYear}.pdf`, date: `20${startYear}-07-15`, size: "940 KB", url: "#" },
+        ],
+        "Q2": [
+          { id: `bse-reg33-q2-${year}`, name: `Reg_33_Financial_Results_Q2_FY${endYear}.pdf`, date: `20${startYear}-11-14`, size: "920 KB", url: "#" },
+          { id: `bse-shp-q2-${year}`, name: `Shareholding_Pattern_Q2_FY${endYear}.pdf`, date: `20${startYear}-10-15`, size: "825 KB", url: "#" },
+          { id: `bse-gov-q2-${year}`, name: `Corporate_Governance_Report_Q2_FY${endYear}.pdf`, date: `20${startYear}-10-15`, size: "945 KB", url: "#" },
+        ],
+        "Q3": [
+          { id: `bse-reg33-q3-${year}`, name: `Reg_33_Financial_Results_Q3_FY${endYear}.pdf`, date: `20${endYear}-02-14`, size: "910 KB", url: "#" },
+          { id: `bse-shp-q3-${year}`, name: `Shareholding_Pattern_Q3_FY${endYear}.pdf`, date: `20${endYear}-01-15`, size: "815 KB", url: "#" },
+          { id: `bse-gov-q3-${year}`, name: `Corporate_Governance_Report_Q3_FY${endYear}.pdf`, date: `20${endYear}-01-15`, size: "935 KB", url: "#" },
+        ],
+        "Q4": [
+          { id: `bse-reg33-q4-${year}`, name: `Reg_33_Financial_Results_Q4_FY${endYear}.pdf`, date: `20${endYear}-05-25`, size: "1.1 MB", url: "#" },
+          { id: `bse-reg7-q4-${year}`, name: `Reg_7(3)_Compliance_Certificate_FY${endYear}.pdf`, date: `20${endYear}-04-18`, size: "210 KB", url: "#" },
+          { id: `bse-reg40-q4-${year}`, name: `Reg_40(9)_Compliance_Certificate_FY${endYear}.pdf`, date: `20${endYear}-04-18`, size: "195 KB", url: "#" },
+          { id: `bse-shp-q4-${year}`, name: `Shareholding_Pattern_Q4_FY${endYear}.pdf`, date: `20${endYear}-04-15`, size: "820 KB", url: "#" },
+          { id: `bse-gov-q4-${year}`, name: `Corporate_Governance_Report_Q4_FY${endYear}.pdf`, date: `20${endYear}-04-15`, size: "940 KB", url: "#" },
+        ],
+      };
       return acc;
-    }, {} as Record<string, DocumentItem[]>),
+    }, {} as Record<string, Record<string, DocumentItem[]>>),
   },
   {
     id: "right-issue",
@@ -290,6 +308,30 @@ const categoriesData: Category[] = [
       { id: "aoa", name: "Articles_of_Association_(AOA).pdf", date: "2023-09-15", size: "2.4 MB", url: "#" },
     ],
   },
+  {
+    id: "board-of-directors",
+    name: "Board of Directors",
+    desc: "Profiles, committee compositions, and details of the Board of Directors of Aayush Wellness Limited.",
+    hasYears: false,
+    documents: [
+      { id: "bod-1", name: "Composition_of_Committees.pdf", date: "2025-04-10", size: "320 KB", url: "#" },
+      { id: "bod-2", name: "Board_of_Directors_Profiles.pdf", date: "2025-04-10", size: "480 KB", url: "#" },
+    ],
+  },
+  {
+    id: "subsidiaries-financials",
+    name: "Financial Statements of Subsidiaries",
+    desc: "Audited financial statements and related disclosures of the subsidiary companies of Aayush Wellness Limited.",
+    hasYears: true,
+    years: FINANCIAL_YEARS,
+    documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
+      const endYear = year.substring(6, 8);
+      acc[year] = [
+        { id: `sub-fin-${year}`, name: `Financial_Statement_Subsidiary_Companies_FY${endYear}.pdf`, date: `20${endYear}-08-20`, size: "1.6 MB", url: "#" }
+      ];
+      return acc;
+    }, {} as Record<string, DocumentItem[]>),
+  },
 ];
 
 export function InvestorsPageClient() {
@@ -304,6 +346,7 @@ export function InvestorsPageClient() {
   // Mobile Accordion state: holds the ID of expanded category
   const [expandedMobileCategory, setExpandedMobileCategory] = useState<string | null>("annual-report");
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeQuarter, setActiveQuarter] = useState<string>("Q1");
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [showToast, setShowToast] = useState(false);
 
@@ -332,7 +375,9 @@ export function InvestorsPageClient() {
   // Helper to filter documents based on search query
   const getFilteredDocs = (cat: Category, year: string) => {
     let list: DocumentItem[] = [];
-    if (cat.hasYears) {
+    if (cat.id === "bse-compliances") {
+      list = cat.documentsByYearAndQuarter?.[year]?.[activeQuarter] || [];
+    } else if (cat.hasYears) {
       list = cat.documentsByYear?.[year] || [];
     } else {
       list = cat.documents || [];
@@ -346,7 +391,7 @@ export function InvestorsPageClient() {
 
   const desktopFilteredDocuments = useMemo(() => {
     return getFilteredDocs(currentCategory, activeYear);
-  }, [currentCategory, activeYear, searchQuery]);
+  }, [currentCategory, activeYear, activeQuarter, searchQuery]);
 
   return (
     <div className="investors-page-container">
@@ -389,6 +434,78 @@ export function InvestorsPageClient() {
             <p className="investors-category-desc">{currentCategory.desc}</p>
           </div>
 
+          {currentCategory.id === "investor-grievance" && (
+            <div className="grievance-cards-grid" style={{ marginBottom: "40px" }}>
+              {/* Card 1 */}
+              <div className="grievance-card">
+                <h3 className="grievance-card-header">Grievance Redressal Officer</h3>
+                <div className="grievance-card-content">
+                  <div className="grievance-field">
+                    <span className="field-label">NAME</span>
+                    <span className="field-value">Ms. Sneha Khemka</span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">DESIGNATION</span>
+                    <span className="field-value">Company Secretary & Compliance Officer</span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">CONTACT NO.</span>
+                    <span className="field-value">+91 84486 93031</span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">E-MAIL</span>
+                    <span className="field-value">
+                      <a href="mailto:cs@aayushwellness.com">cs@aayushwellness.com</a>
+                    </span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">WEBSITE</span>
+                    <span className="field-value">
+                      <a href="http://www.aayushwellness.com/" target="_blank" rel="noopener noreferrer">
+                        http://www.aayushwellness.com/
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div className="grievance-card">
+                <h3 className="grievance-card-header">Registrar & Share Transfer Agent</h3>
+                <div className="grievance-card-content">
+                  <div className="grievance-field">
+                    <span className="field-label">RTA NAME</span>
+                    <span className="field-value">Beetal Financial & Computer Services (P) Ltd</span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">ADDRESS</span>
+                    <span className="field-value">
+                      Beetal House, 3rd Floor, 99 Madangir, Behind Local Shopping Centre, Near Dada Harsukh Dass Mandir, New Delhi - 110062.
+                    </span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">CONTACT NO.</span>
+                    <span className="field-value">011-29961281</span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">E-MAIL</span>
+                    <span className="field-value">
+                      <a href="mailto:beetalrta@gmail.com">beetalrta@gmail.com</a>
+                    </span>
+                  </div>
+                  <div className="grievance-field">
+                    <span className="field-label">WEBSITE</span>
+                    <span className="field-value">
+                      <a href="http://www.beetalfinancial.com/" target="_blank" rel="noopener noreferrer">
+                        http://www.beetalfinancial.com/
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Search Box */}
           <div className="investors-search-box">
             <svg
@@ -415,25 +532,65 @@ export function InvestorsPageClient() {
             />
           </div>
 
-          {/* Financial Years Tabs (conditionally rendered) */}
-          {currentCategory.hasYears && currentCategory.years && (
-            <div className="years-tabs-container">
-              <div className="years-tabs-label">Select Financial Year</div>
-              <div className="years-tabs">
-                {currentCategory.years.map((year) => {
-                  const isActive = activeYear === year;
-                  return (
-                    <button
-                      key={year}
-                      className={`year-tab ${isActive ? "active" : ""}`}
-                      onClick={() => handleYearChange(currentCategory.id, year)}
-                    >
-                      {year}
-                    </button>
-                  );
-                })}
+          {/* Financial Years Tabs / BSE Compliances custom filters (conditionally rendered) */}
+          {currentCategory.id === "bse-compliances" ? (
+            <div className="bse-filters-container">
+              <div className="years-dropdown-container">
+                <label className="years-tabs-label" htmlFor="bse-year-select">Select Financial Year</label>
+                <div className="select-wrapper">
+                  <select
+                    id="bse-year-select"
+                    className="bse-year-select"
+                    value={activeYear}
+                    onChange={(e) => handleYearChange("bse-compliances", e.target.value)}
+                  >
+                    {FINANCIAL_YEARS.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="quarter-tabs-container">
+                <div className="years-tabs-label">Select Quarter</div>
+                <div className="quarter-tabs">
+                  {["Q1", "Q2", "Q3", "Q4"].map((q) => {
+                    const isActive = activeQuarter === q;
+                    return (
+                      <button
+                        key={q}
+                        className={`quarter-tab ${isActive ? "active" : ""}`}
+                        onClick={() => setActiveQuarter(q)}
+                      >
+                        Quarter {q.substring(1)}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
             </div>
+          ) : (
+            currentCategory.hasYears && currentCategory.years && (
+              <div className="years-tabs-container">
+                <div className="years-tabs-label">Select Financial Year</div>
+                <div className="years-tabs">
+                  {currentCategory.years.map((year) => {
+                    const isActive = activeYear === year;
+                    return (
+                      <button
+                        key={year}
+                        className={`year-tab ${isActive ? "active" : ""}`}
+                        onClick={() => handleYearChange(currentCategory.id, year)}
+                      >
+                        {year}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )
           )}
 
           {/* Documents Table */}
@@ -578,25 +735,138 @@ export function InvestorsPageClient() {
                         {cat.desc}
                       </p>
 
-                      {/* Year Tabs inside Mobile Accordion */}
-                      {cat.hasYears && cat.years && (
-                        <div className="years-tabs-container">
-                          <div className="years-tabs" style={{ gap: "6px" }}>
-                            {cat.years.map((year) => {
-                              const isActive = mobileCatActiveYear === year;
-                              return (
-                                <button
-                                  key={year}
-                                  className={`year-tab ${isActive ? "active" : ""}`}
-                                  style={{ padding: "6px 12px", fontSize: "11px" }}
-                                  onClick={() => handleYearChange(cat.id, year)}
-                                >
-                                  {year}
-                                </button>
-                              );
-                            })}
+                      {cat.id === "investor-grievance" && (
+                        <div className="grievance-cards-grid" style={{ marginBottom: "24px" }}>
+                          {/* Card 1 */}
+                          <div className="grievance-card">
+                            <h3 className="grievance-card-header">Grievance Redressal Officer</h3>
+                            <div className="grievance-card-content">
+                              <div className="grievance-field">
+                                <span className="field-label">NAME</span>
+                                <span className="field-value">Ms. Sneha Khemka</span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">DESIGNATION</span>
+                                <span className="field-value">Company Secretary & Compliance Officer</span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">CONTACT NO.</span>
+                                <span className="field-value">+91 84486 93031</span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">E-MAIL</span>
+                                <span className="field-value">
+                                  <a href="mailto:cs@aayushwellness.com">cs@aayushwellness.com</a>
+                                </span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">WEBSITE</span>
+                                <span className="field-value">
+                                  <a href="http://www.aayushwellness.com/" target="_blank" rel="noopener noreferrer">
+                                    http://www.aayushwellness.com/
+                                  </a>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Card 2 */}
+                          <div className="grievance-card">
+                            <h3 className="grievance-card-header">Registrar & Share Transfer Agent</h3>
+                            <div className="grievance-card-content">
+                              <div className="grievance-field">
+                                <span className="field-label">RTA NAME</span>
+                                <span className="field-value">Beetal Financial & Computer Services (P) Ltd</span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">ADDRESS</span>
+                                <span className="field-value">
+                                  Beetal House, 3rd Floor, 99 Madangir, Behind Local Shopping Centre, Near Dada Harsukh Dass Mandir, New Delhi - 110062.
+                                </span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">CONTACT NO.</span>
+                                <span className="field-value">011-29961281</span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">E-MAIL</span>
+                                <span className="field-value">
+                                  <a href="mailto:beetalrta@gmail.com">beetalrta@gmail.com</a>
+                                </span>
+                              </div>
+                              <div className="grievance-field">
+                                <span className="field-label">WEBSITE</span>
+                                <span className="field-value">
+                                  <a href="http://www.beetalfinancial.com/" target="_blank" rel="noopener noreferrer">
+                                    http://www.beetalfinancial.com/
+                                  </a>
+                                </span>
+                              </div>
+                            </div>
                           </div>
                         </div>
+                      )}
+
+                      {/* Year Tabs inside Mobile Accordion */}
+                      {/* Year Tabs / BSE Compliances custom filters inside Mobile Accordion */}
+                      {cat.id === "bse-compliances" ? (
+                        <div className="bse-filters-container mobile-bse-filters" style={{ padding: "14px", gap: "12px", border: "1px solid var(--gray-200)", borderRadius: "8px", background: "#ffffff", marginBottom: "16px" }}>
+                          <div className="years-dropdown-container">
+                            <label className="years-tabs-label" htmlFor={`bse-year-select-mobile-${cat.id}`} style={{ fontSize: "11px", marginBottom: "6px" }}>Select Financial Year</label>
+                            <select
+                              id={`bse-year-select-mobile-${cat.id}`}
+                              className="bse-year-select"
+                              style={{ padding: "8px 12px", fontSize: "13px", width: "100%", boxSizing: "border-box" }}
+                              value={mobileCatActiveYear}
+                              onChange={(e) => handleYearChange(cat.id, e.target.value)}
+                            >
+                              {FINANCIAL_YEARS.map((year) => (
+                                <option key={year} value={year}>
+                                  {year}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="quarter-tabs-container" style={{ marginTop: "8px" }}>
+                            <div className="years-tabs-label" style={{ fontSize: "11px", marginBottom: "6px" }}>Select Quarter</div>
+                            <div className="quarter-tabs" style={{ gap: "6px", flexWrap: "wrap" }}>
+                              {["Q1", "Q2", "Q3", "Q4"].map((q) => {
+                                const isActive = activeQuarter === q;
+                                return (
+                                  <button
+                                    key={q}
+                                    className={`quarter-tab ${isActive ? "active" : ""}`}
+                                    style={{ padding: "6px 12px", fontSize: "11px" }}
+                                    onClick={() => setActiveQuarter(q)}
+                                  >
+                                    Quarter {q.substring(1)}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        cat.hasYears && cat.years && (
+                          <div className="years-tabs-container">
+                            <div className="years-tabs" style={{ gap: "6px" }}>
+                              {cat.years.map((year) => {
+                                const isActive = mobileCatActiveYear === year;
+                                return (
+                                  <button
+                                    key={year}
+                                    className={`year-tab ${isActive ? "active" : ""}`}
+                                    style={{ padding: "6px 12px", fontSize: "11px" }}
+                                    onClick={() => handleYearChange(cat.id, year)}
+                                  >
+                                    {year}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        )
                       )}
 
                       {/* Document List inside Mobile Accordion */}

@@ -98,6 +98,10 @@
 }
 
 .careers-thrive-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   margin-bottom: 64px;
 }
 
@@ -108,8 +112,13 @@
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--black);
-  margin-top: 24px;
+  margin: 0;
+}
+
+/* Remove default bottom margin from ayu-tag inside this header */
+.careers-thrive-header .ayu-tag {
   margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .careers-thrive-grid {
@@ -204,13 +213,14 @@
 }
 
 .careers-feels-header {
-  max-width: 1400px;
+  max-width: 1800px;
   margin: 0 auto 64px;
   padding: 0 48px;
-  text-align: center;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .careers-feels-heading {
@@ -220,8 +230,13 @@
   line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--white);
-  margin-top: 24px;
+  margin: 0;
+}
+
+/* Remove default bottom margin from ayu-tag inside this header */
+.careers-feels-header .ayu-tag {
   margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .careers-feels-slider-container {
@@ -381,6 +396,7 @@
 .careers-feels .desktop-only {
   display: block;
 }
+
 .careers-feels .mobile-only {
   display: none !important;
 }
@@ -847,7 +863,8 @@
 
 @media (max-width: 768px) {
   .careers-hero {
-    height: 50vh;
+    height: 65vh !important;
+    min-height: 65vh !important;
   }
 
   .careers-thrive,
@@ -857,16 +874,27 @@
 
   .careers-feels-header {
     padding: 0 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 32px;
   }
 
   .careers-hero-content {
     padding: 0 20px 48px;
   }
 
+  .careers-thrive-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
   .careers-thrive-heading,
   .careers-feels-heading {
     font-size: 28px;
-    margin-top: 16px;
+    margin-top: 0;
   }
 
   .careers-thrive-grid {

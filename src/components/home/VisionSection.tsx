@@ -24,7 +24,7 @@ export function VisionSection() {
         {/* Right: title + body */}
         <div className="vision-text reveal reveal-delay-2">
           <h2 className="vision-title">
-            Building The Future Of Preventive Wellness For Modern India
+            Building the future of preventive wellness for modern India
           </h2>
           <p className="vision-body">
             Aayush Wellness is creating an integrated ecosystem of nutraceuticals,

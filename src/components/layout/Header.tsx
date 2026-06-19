@@ -132,7 +132,7 @@ export function Header() {
             </ul>
           </li>
           <li className="has-dropdown">
-            <Link href="/products" className={isActive("/products") || isActive("/ayurveda") || isActive("/store") ? "active" : ""}>
+            <Link href="/products" className={isActive("/products") || isActive("/ayurveda") ? "active" : ""}>
               Products <ChevronDown />
             </Link>
             <ul className="dropdown-menu">
@@ -140,7 +140,7 @@ export function Header() {
                 <Link href="/products">All Products</Link>
               </li>
               <li>
-                <Link href="/store">Online Store</Link>
+                <Link href="https://store.aayushwellness.com/">Online Store</Link>
               </li>
             </ul>
           </li>
@@ -225,7 +225,7 @@ export function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/store" className={isActive("/store") ? "active" : ""}>
+              <Link href="https://store.aayushwellness.com/">
                 Online Store
               </Link>
             </li>

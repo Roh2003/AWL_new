@@ -414,7 +414,7 @@ export function ProductsPageClient() {
             </p>
           </div>
           <div className="banner-right">
-            <Link href="/store" className="banner-cta-btn">
+            <Link href="https://store.aayushwellness.com/" className="banner-cta-btn">
               Visit Our Store &rarr;
             </Link>
           </div>

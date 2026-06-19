@@ -26,11 +26,11 @@ export function SectionTag({
     lineStyle = { background: "rgba(255, 255, 255, 0.3)" };
     labelClass = "beyond-label";
   } else if (theme === "light") {
-    lineStyle = { background: "#fffefeff" };
+    lineStyle = { background: "#E0E0E0" };
     labelClass = "section-label label-light";
   } else {
     // default / dark theme
-    lineStyle = { background: "#000" };
+    lineStyle = { background: "#0505051F" };
     labelClass = "section-label label-dark";
   }
 

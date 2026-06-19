@@ -417,7 +417,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
 /* ===== VISION & PURPOSE SCROLLEFFECT ===== */
 .about-page .vision-scroll-container {
   position: relative;
-  height: 380vh;
+  height: 550vh;
   /* total scrollable length */
   width: 100%;
 }
@@ -502,7 +502,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
   margin: 0;
   width: calc(100% - 80px);
   max-width: 1300px;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 .about-page .vision-card {
@@ -609,7 +609,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  max-width: 1700px;
+  max-width: 1800px;
   background-color: #FFF;
   border-radius: 20px;
   padding: 40px;
@@ -707,7 +707,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 1700px;
+  max-width: 1800px;
   margin: 48px auto 0 auto;
 }
 
@@ -767,17 +767,14 @@ body:has(.about-page) #navbar .nav-cta:hover {
 
   /* Hero Overrides */
   .about-page #hero {
-    min-height: 100vh;
+    height: 70vh !important;
+    min-height: 70vh !important;
     align-items: flex-end;
   }
 
   .about-page .hero-photo {
     width: 100%;
     left: 0;
-  }
-
-  .about-page .hero-overlay {
-    background: linear-gradient(to bottom, rgba(30, 114, 104, 0.65) 0%, rgba(30, 114, 104, 0.85) 100%);
   }
 
   .about-page .hero-content {
@@ -789,7 +786,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
   .about-page .hero-title {
     font-size: clamp(32px, 8vw, 44px);
     line-height: 1.2;
-    margin-left: 0;
+    margin-left: 40px;
     max-width: 100%;
   }
 

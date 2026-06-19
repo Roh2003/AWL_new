@@ -66,7 +66,7 @@ export function Footer() {
             <li><Link href="/products">Herbal Masala</Link></li>
             <li><Link href="/products">Shilajit Drops</Link></li>
           </ul>
-          <Link href="/store" className="footer-store-btn">Visit Our Store <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
+          <Link href="https://store.aayushwellness.com/" className="footer-store-btn">Visit Our Store <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
             <path d="M16.9706 24.0415L24.0416 16.9705L16.9706 9.89941M24.0416 16.9705H9.89949" stroke="#050505" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg></Link>
         </div>

@@ -14,30 +14,34 @@ export function AboutVision() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    const handleScroll = () => {
-      const container = containerRef.current;
-      if (!container) return;
+    let targetProgress = 0;
+    let currentProgress = 0;
+    let rafId: number;
 
+    const getScrollProgress = () => {
+      const container = containerRef.current;
+      if (!container) return 0;
       const rect = container.getBoundingClientRect();
       const totalScrollable = rect.height - window.innerHeight;
-
-      if (totalScrollable <= 0) return;
-
-      // Progress goes from 0 (sticky start) to 1 (sticky end)
-      const p = Math.max(0, Math.min(1, -rect.top / totalScrollable));
-      setProgress(p);
+      if (totalScrollable <= 0) return 0;
+      return Math.max(0, Math.min(1, -rect.top / totalScrollable));
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
+    const tick = () => {
+      targetProgress = getScrollProgress();
+      // Lerp factor: 0.045 = slow & smooth, increase for faster
+      currentProgress += (targetProgress - currentProgress) * 0.045;
+      setProgress(currentProgress);
+      rafId = requestAnimationFrame(tick);
+    };
 
-    // Initial check
-    handleScroll();
+    rafId = requestAnimationFrame(tick);
+
+    window.addEventListener("resize", checkMobile);
 
     return () => {
       window.removeEventListener("resize", checkMobile);
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 
@@ -90,41 +94,41 @@ export function AboutVision() {
 
   // Calculate opacities and translation values based on scroll progress
 
-  // Background 2 (Leaf/Swimmer) translateY percentage (100 is below screen, 0 is fully covering)
+  // Background 2 (Leaf/Swimmer) slides in from 0.45 to 0.65
   let bg2TranslateY = 100;
-  if (progress > 0.35) {
-    bg2TranslateY = Math.max(0, 100 - ((progress - 0.35) / 0.2) * 100);
+  if (progress > 0.45) {
+    bg2TranslateY = Math.max(0, 100 - ((progress - 0.45) / 0.2) * 100);
   }
 
-  // Card 1 (Vision) Position & Opacity
+  // Card 1 (Vision) — enters slowly 0→0.15, stays 0.15→0.40, exits 0.40→0.52
   let card1Opacity = 0;
-  let card1TranslateY = 120; // starts 120px down
+  let card1TranslateY = 100;
 
-  if (progress < 0.1) {
-    const ratio = progress / 0.1;
+  if (progress < 0.15) {
+    const ratio = progress / 0.15;
     card1Opacity = ratio;
-    card1TranslateY = 120 - ratio * 120;
-  } else if (progress >= 0.1 && progress < 0.4) {
+    card1TranslateY = 100 - ratio * 100;
+  } else if (progress >= 0.15 && progress < 0.40) {
     card1Opacity = 1;
     card1TranslateY = 0;
-  } else if (progress >= 0.4 && progress < 0.5) {
-    const ratio = (progress - 0.4) / 0.1;
+  } else if (progress >= 0.40 && progress < 0.52) {
+    const ratio = (progress - 0.40) / 0.12;
     card1Opacity = 1 - ratio;
-    card1TranslateY = -ratio * 120; // slide up and out
+    card1TranslateY = -ratio * 100;
   } else {
     card1Opacity = 0;
-    card1TranslateY = -120;
+    card1TranslateY = -100;
   }
 
-  // Card 2 (Purpose) Position & Opacity
+  // Card 2 (Purpose) — enters slowly 0.50→0.80, stays at center 0.80+
   let card2Opacity = 0;
-  let card2TranslateY = 120;
+  let card2TranslateY = 100;
 
-  if (progress >= 0.5 && progress < 0.6) {
-    const ratio = (progress - 0.5) / 0.1;
+  if (progress >= 0.50 && progress < 0.80) {
+    const ratio = (progress - 0.50) / 0.30;
     card2Opacity = ratio;
-    card2TranslateY = 120 - ratio * 120;
-  } else if (progress >= 0.6) {
+    card2TranslateY = 100 - ratio * 100;
+  } else if (progress >= 0.80) {
     card2Opacity = 1;
     card2TranslateY = 0;
   }
@@ -167,7 +171,7 @@ export function AboutVision() {
             className="vision-card"
             style={{
               opacity: card1Opacity,
-              transform: `translate(-50%, calc(-50% + ${card1TranslateY}px))`,
+              transform: `translate(-50%, calc(-50% + ${card1TranslateY}vh))`,
               pointerEvents: card1Opacity > 0.1 ? "auto" : "none"
             }}
           >
@@ -185,7 +189,7 @@ export function AboutVision() {
             className="purpose-card"
             style={{
               opacity: card2Opacity,
-              transform: `translate(-50%, calc(-50% + ${card2TranslateY}px))`,
+              transform: `translate(-50%, calc(-50% + ${card2TranslateY}vh))`,
               pointerEvents: card2Opacity > 0.1 ? "auto" : "none"
             }}
           >

@@ -21,10 +21,12 @@
   top: 140px;
   height: calc(100vh - 180px);
   overflow-y: auto;
-  padding-right: 16px;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
+  /* border-top: O.7px solid #E0E0E0; */
+  background: #FBFBFB;
 }
 
 /* Custom Scrollbar for Sidebar */
@@ -47,11 +49,11 @@
 
 .sidebar-item {
   width: 100%;
-  padding: 14px 20px;
+  padding: 25px;
   text-align: left;
   background: transparent;
   border: none;
-  border-radius: 6px;
+  /* border-bottom: 0.7px solid #E0E0E0; */
   font-size: 18px;
   font-weight: 500;
   font-family: inherit;
@@ -60,7 +62,10 @@
   transition: all 0.2s ease;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
+  /* box-sizing: border-box; */
+  display: flex;
+  align-items: center;
 }
 
 .sidebar-item:hover {
@@ -604,4 +609,78 @@
     grid-template-columns: 1fr;
     gap: 40px;
   }
+}
+
+/* --- BSE Compliances Custom Filters --- */
+.bse-filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+  background: #ffffff;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.years-dropdown-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bse-year-select {
+  padding: 10px 16px;
+  font-size: 15px;
+  font-family: Manrope, sans-serif;
+  font-weight: 600;
+  color: var(--gray-700);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  background: #ffffff;
+  outline: none;
+  cursor: pointer;
+  width: 200px;
+  transition: all 0.2s ease;
+}
+
+.bse-year-select:focus {
+  border-color: var(--lime-dark);
+}
+
+.quarter-tabs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quarter-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.quarter-tab {
+  padding: 8px 16px;
+  background: #F5F5F5;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: Manrope, sans-serif;
+  font-weight: 500;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quarter-tab:hover {
+  background: #EAEAEA;
+  color: var(--black);
+}
+
+.quarter-tab.active {
+  background: #ffffff;
+  color: var(--black);
+  font-weight: 700;
+  border-bottom: 2px solid #E11D48; /* Rose/Red accent line */
+  border-radius: 4px 4px 0 0;
 }

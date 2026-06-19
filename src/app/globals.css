@@ -441,7 +441,7 @@ section {
   width: 80px;
   height: 1px;
   background: currentColor;
-  opacity: 0.25;
+
 }
 
 .section-label {
@@ -1055,20 +1055,54 @@ section {
 }
 
 .reach-map {
-  width: 100%;
-  aspect-ratio: 1982 / 551;
+  width: 1840px;
+  max-width: 100%;
+  height: 700px;
   background: #fff;
-  border: 1.5px solid #3a8ef6;
   border-radius: 0;
   position: relative;
   overflow: hidden;
 }
 
-.reach-map-img {
+@media (max-width: 1880px) {
+  .reach-map {
+    height: auto;
+    aspect-ratio: 1920 / 700;
+  }
+}
+
+@media (max-width: 768px) {
+  .reach-map {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 786 / 800 !important;
+  }
+}
+
+.reach-map-img,
+.reach-map-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.desktop-map-video {
+  display: block;
+}
+
+.mobile-map-video {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-map-video {
+    display: none;
+  }
+
+  .mobile-map-video {
+    display: block;
+  }
 }
 
 .map-bg {
@@ -3260,7 +3294,7 @@ footer {
 
   /* Homepage Mobile Typography Overrides */
   .hero-title {
-    font-size: 36px !important;
+    font-size: 25px !important;
     line-height: 1.2 !important;
   }
 
@@ -3268,21 +3302,62 @@ footer {
   .products-title,
   .why-title,
   .reach-title,
-  .beyond-title,
+  .beyond-title {
+    color: #050505;
+    font-family: Manrope;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    /* 30px */
+    letter-spacing: -0.25px;
+  }
+
   .vision-title {
-    font-size: 25px !important;
-    line-height: 1.25 !important;
+    color: #ffffff;
+    font-family: var(--font-display, "Inter Display");
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: -0.25px;
+    text-transform: none;
   }
 
   .about-body,
   .products-desc,
   .why-card-body,
   .why-card p,
-  .reach-body,
-  .beyond-item-desc,
+  .reach-body {
+    color: var(--PremiumGray1, #2B2B2B);
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    /* 19.2px */
+    letter-spacing: 0.167px;
+  }
+
   .vision-body {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
+    color: var(--PremiumGray5, #E0E0E0);
+    font-family: Manrope;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    letter-spacing: 0.167px;
+  }
+
+  .beyond-item-desc {
+    color: var(--PremiumGray5, #E0E0E0) !important;
+    font-family: Manrope !important;
+    font-size: 12px !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 160% !important;
+    /* 19.2px */
+    letter-spacing: 0.127px !important;
   }
 
   .tag,
@@ -3300,14 +3375,35 @@ footer {
 
   .product-name,
   .why-card-title,
-  .why-card-title-white {
-    font-size: 20px !important;
+  .why-card-title-white,
+  .why-card-inner-dark .why-card-title,
+  .why-card-white .why-card-title,
+  .why-card-lime .why-card-title {
+    font-size: 22px !important;
     line-height: 1.3 !important;
+    /* margin-bottom: 8px !important; */
   }
 
-  .product-desc {
+  .product-desc,
+  .why-card-body,
+  .why-card-lime .why-card-body,
+  .why-card-inner-dark .why-card-body,
+  .why-card-white .why-card-body,
+  .why-card-body-white {
     font-size: 13px !important;
     line-height: 1.5 !important;
+  }
+
+  .why-card-body-sub {
+    color: #ffffff !important;
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .why-card-body-white {
+    margin-top: 12px !important;
   }
 
   /* Grid Layouts to Single Columns on Mobile */
@@ -3320,10 +3416,19 @@ footer {
 
   .products-header,
   .reach-header,
-  .why-header {
+  .why-header,
+  .news-header,
+  .vision-inner,
+  .contact-inner {
     grid-template-columns: 1fr !important;
     gap: 12px !important;
     margin-bottom: 24px !important;
+  }
+
+  .section-tag,
+  .beyond-section-tag,
+  .about-left .section-tag {
+    margin-bottom: 12px !important;
   }
 
   #about,
@@ -3336,7 +3441,8 @@ footer {
     padding: 32px 16px !important;
   }
 
-  #about {
+  #about,
+  #vision {
     min-height: auto !important;
   }
 
@@ -3405,21 +3511,24 @@ footer {
     padding: 24px 20px !important;
   }
 
-  .why-card-lime {
-    min-height: 260px !important;
-    grid-row: auto !important;
-  }
-
-  .why-card-bg {
-    min-height: 200px !important;
-    grid-row: auto !important;
-  }
-
+  .why-card,
+  .why-card-lime,
+  .why-card-bg,
   .why-card-white,
   .why-card-teal {
-    min-height: 200px !important;
+    min-height: 250px !important;
     grid-row: auto !important;
     grid-column: auto !important;
+  }
+
+  .why-card-stat {
+    font-size: 38px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .why-card-stat-label {
+    font-size: 16px !important;
+    margin-bottom: 12px !important;
   }
 
   .products-nav {
@@ -3472,6 +3581,10 @@ footer {
 
   .press-ext-link {
     padding: 12px 16px !important;
+  }
+
+  .press-card-text {
+    min-height: 260px !important;
   }
 
   /* Contact Form mobile typography overrides */
@@ -3544,7 +3657,20 @@ footer {
 
   .footer-copy,
   .footer-legal a {
-    font-size: 12px !important;
+    color: rgba(255, 255, 255, 0.40);
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 13px !important;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.4 !important;
+    letter-spacing: 0.52px;
+    text-transform: uppercase;
+  }
+
+  .footer-wordmark {
+    font-size: 21vw !important;
+    line-height: 1.2 !important;
   }
 
   .footer-bottom {
@@ -3556,7 +3682,7 @@ footer {
   /* Hero action buttons mobile responsiveness */
   .hero-actions {
     gap: 12px !important;
-    margin-top: 500px !important;
+    margin-top: 700px !important;
   }
 
   .btn-ghost,
@@ -3567,8 +3693,8 @@ footer {
   }
 
   #hero {
-    height: 50vh !important;
-    min-height: 350px !important;
+    height: 70vh !important;
+    min-height: 620px !important;
   }
 
   .scroll-indicator {
