@@ -502,7 +502,7 @@
   display: grid;
   grid-template-columns: 1fr 1.8fr;
   gap: 60px;
-  max-width: 1400px;
+  max-width: 1800px;
   margin: 0 auto;
   align-items: start;
 }
