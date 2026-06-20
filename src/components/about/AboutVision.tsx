@@ -5,15 +5,8 @@ import React, { useEffect, useRef, useState } from "react";
 export function AboutVision() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 900);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
     let targetProgress = 0;
     let currentProgress = 0;
     let rafId: number;
@@ -37,60 +30,10 @@ export function AboutVision() {
 
     rafId = requestAnimationFrame(tick);
 
-    window.addEventListener("resize", checkMobile);
-
     return () => {
-      window.removeEventListener("resize", checkMobile);
       cancelAnimationFrame(rafId);
     };
   }, []);
-
-  // Return static stacking layout for mobile
-  if (isMobile) {
-    return (
-      <div className="vision-mobile-container">
-        {/* Vision Card Block */}
-        <div className="vision-mobile-section">
-          <div className="vision-mobile-bg yoga-img"></div>
-          <div className="vision-mobile-overlay"></div>
-          <div className="vision-mobile-card">
-            <div className="vision-label">Our Vision</div>
-            <div className="vision-text">
-              To create a world where health is defined by prevention, not just treatment.
-              We envision empowering every individual with accessible healthcare, science-backed nutrition,
-              and holistic wellness solutions - bridging the gap between modern medicine and nature's wisdom
-              to make proactive health a daily reality for all.
-            </div>
-          </div>
-        </div>
-
-        {/* Purpose Card Block */}
-        <div className="vision-mobile-section">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="vision-mobile-bg leaf-img"
-            poster="/assets/images/about/swimmer_pool.png"
-            style={{ objectFit: "cover", width: "100%", height: "100%" }}
-          >
-            <source src="/assets/images/about/about_vision_bg_2.mp4" type="video/mp4" />
-          </video>
-          <div className="vision-mobile-overlay"></div>
-          <div className="vision-mobile-card purpose-theme">
-            <div className="purpose-label">Our Purpose</div>
-            <div className="purpose-text">
-              To develop and deliver high-quality nutraceuticals, herbal wellness alternatives,
-              and preventive healthcare services that support long-term well-being. Through rigorous
-              scientific research, uncompromising quality, and a people-first approach - we make
-              wellness simple, effective, and accessible to everyone.
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // Calculate opacities and translation values based on scroll progress
 
@@ -170,13 +113,16 @@ export function AboutVision() {
           <div
             className="vision-card"
             style={{
-              opacity: card1Opacity,
+              backgroundColor: `rgba(255, 255, 255, ${0.15 * card1Opacity})`,
+              backdropFilter: `blur(${10 * card1Opacity}px)`,
+              WebkitBackdropFilter: `blur(${10 * card1Opacity}px)`,
+              borderColor: `rgba(255, 255, 255, ${0.15 * card1Opacity})`,
               transform: `translate(-50%, calc(-50% + ${card1TranslateY}vh))`,
               pointerEvents: card1Opacity > 0.1 ? "auto" : "none"
             }}
           >
-            <div className="vision-label">Our Vision</div>
-            <div className="vision-text">
+            <div className="vision-label" style={{ opacity: card1Opacity }}>Our Vision</div>
+            <div className="vision-text" style={{ opacity: card1Opacity }}>
               To create a world where health is defined by prevention, not just treatment.
               We envision empowering every individual with accessible healthcare, science-backed nutrition,
               and holistic wellness solutions - bridging the gap between modern medicine and nature's wisdom
@@ -188,13 +134,16 @@ export function AboutVision() {
           <div
             className="purpose-card"
             style={{
-              opacity: card2Opacity,
+              backgroundColor: `rgba(120, 140, 60, ${0.35 * card2Opacity})`,
+              backdropFilter: `blur(${20 * card2Opacity}px)`,
+              WebkitBackdropFilter: `blur(${20 * card2Opacity}px)`,
+              borderColor: `rgba(255, 255, 255, ${0.2 * card2Opacity})`,
               transform: `translate(-50%, calc(-50% + ${card2TranslateY}vh))`,
               pointerEvents: card2Opacity > 0.1 ? "auto" : "none"
             }}
           >
-            <div className="purpose-label">Our Purpose</div>
-            <div className="purpose-text">
+            <div className="purpose-label" style={{ opacity: card2Opacity }}>Our Purpose</div>
+            <div className="purpose-text" style={{ opacity: card2Opacity }}>
               To develop and deliver high-quality nutraceuticals, herbal wellness alternatives,
               and preventive healthcare services that support long-term well-being. Through rigorous
               scientific research, uncompromising quality, and a people-first approach - we make

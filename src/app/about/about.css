@@ -502,7 +502,6 @@ body:has(.about-page) #navbar .nav-cta:hover {
   margin: 0;
   width: calc(100% - 80px);
   max-width: 1300px;
-  will-change: transform, opacity;
 }
 
 .about-page .vision-card {
@@ -512,7 +511,6 @@ body:has(.about-page) #navbar .nav-cta:hover {
   background: rgba(255, 255, 255, .15);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
   padding: 60px 64px;
   border: 1px solid rgba(255, 255, 255, .25);
 }
@@ -542,7 +540,6 @@ body:has(.about-page) #navbar .nav-cta:hover {
   background: rgba(120, 140, 60, .35);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: 20px;
   padding: 60px 64px;
   border: 1px solid rgba(255, 255, 255, .2);
 }
@@ -910,60 +907,13 @@ body:has(.about-page) #navbar .nav-cta:hover {
     color: var(--gray-600);
   }
 
-  /* Vision Mobile Block Styling */
-  .about-page .vision-mobile-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background: var(--white);
-  }
-
-  .about-page .vision-mobile-section {
-    position: relative;
-    width: 100%;
-    min-height: 480px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-    box-sizing: border-box;
-  }
-
-  .about-page .vision-mobile-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: 1;
-  }
-
-  .about-page .vision-mobile-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.25);
-    z-index: 2;
-  }
-
-  .about-page .vision-mobile-card {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 30px 24px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    display: flex;
-    flex-direction: column;
+  /* Vision Scroll Overrides for Mobile */
+  .about-page .vision-content-wrapper .vision-card,
+  .about-page .vision-content-wrapper .purpose-card {
+    grid-template-columns: 1fr;
     gap: 16px;
-  }
-
-  .about-page .vision-mobile-card.purpose-theme {
-    background: rgba(120, 140, 60, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px 24px;
+    width: calc(100% - 40px);
   }
 
   .about-page .vision-label,
@@ -972,6 +922,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
     color: #fff;
     font-weight: 600;
     line-height: 1.1;
+    text-align: center;
   }
 
   .about-page .vision-text,
@@ -979,6 +930,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
     font-size: clamp(14px, 4vw, 16px);
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.95);
+    text-align: center;
   }
 
   /* Values Overrides */
