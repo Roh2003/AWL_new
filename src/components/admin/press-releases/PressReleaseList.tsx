@@ -1,196 +1,325 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import AdminTable, { TableColumn } from "../AdminTable";
 import AdminModal from "../AdminModal";
 import AdminDeleteConfirm from "../AdminDeleteConfirm";
-import { NEWS_DATA, NewsItem } from "../../news/newsData";
+import { apiClient } from "@/utils/apiClient";
 
-interface AdminNewsItem extends NewsItem {
-  status: "Published" | "Draft";
+interface PressRelease {
+  id: string;
+  title: string;
+  subtitle: string | null;
+  slug: string;
+  content: unknown;
+  imageUrl: string | null;
+  pdfUrl: string | null;
+  releaseDate: string;
+  isPublished: boolean;
+  publishedAt: string | null;
+  createdAt: string;
+  createdBy?: { id: string; name: string; email: string; role: string };
 }
 
-const INITIAL_DATA: AdminNewsItem[] = NEWS_DATA.map((item, idx) => ({
-  ...item,
-  status: idx % 3 === 0 ? "Draft" : "Published",
-}));
+interface PaginationMeta {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+interface PRListResponse {
+  items: PressRelease[];
+  pagination: PaginationMeta;
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function formatDate(isoString: string): string {
+  const d = new Date(isoString);
+  if (isNaN(d.getTime())) return isoString;
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+  ];
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
 
 export default function PressReleaseList() {
-  const [data, setData] = useState<AdminNewsItem[]>(INITIAL_DATA);
-  
-  // Modals state
+  const [data, setData] = useState<PressRelease[]>([]);
+  const [pagination, setPagination] = useState<PaginationMeta | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [listError, setListError] = useState<string | null>(null);
+
+  // Modal state
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [editingItem, setEditingItem] = useState<AdminNewsItem | null>(null);
-  const [deletingItem, setDeletingItem] = useState<AdminNewsItem | null>(null);
+  const [editingItem, setEditingItem] = useState<PressRelease | null>(null);
+  const [deletingItem, setDeletingItem] = useState<PressRelease | null>(null);
 
-  // Form inputs state
+  // Form state
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("Press Release");
-  const [source, setSource] = useState("");
-  const [dateISO, setDateISO] = useState("");
-  const [link, setLink] = useState("");
-  const [status, setStatus] = useState<"Published" | "Draft">("Published");
+  const [subtitle, setSubtitle] = useState("");
+  const [slug, setSlug] = useState("");
+  const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
+  const [contentText, setContentText] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [pdfUrl, setPdfUrl] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
+  const [isPublished, setIsPublished] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
-  // Format utility
-  const formatDisplayDate = (isoString: string) => {
-    if (!isoString) return "";
-    const dateObj = new Date(isoString);
-    if (isNaN(dateObj.getTime())) return isoString;
-    const day = dateObj.getDate();
-    const months = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
-    ];
-    const month = months[dateObj.getMonth()];
-    const year = dateObj.getFullYear();
-    return `${day} ${month} ${year}`;
-  };
+  // ── Fetch list ─────────────────────────────────────────────────────────────
 
-  // Open Form for Add
+  const fetchPressReleases = useCallback(async () => {
+    setIsLoading(true);
+    setListError(null);
+    try {
+      const res = await apiClient.get<PRListResponse>("/pr?limit=50");
+      setData(res.data.items);
+      setPagination(res.data.pagination);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Failed to load press releases.";
+      setListError(message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchPressReleases();
+  }, [fetchPressReleases]);
+
+  // ── Auto-generate slug from title ─────────────────────────────────────────
+
+  useEffect(() => {
+    if (!slugManuallyEdited) {
+      setSlug(slugify(title));
+    }
+  }, [title, slugManuallyEdited]);
+
+  // ── Open form for Create ───────────────────────────────────────────────────
+
   const handleCreateOpen = () => {
     setEditingItem(null);
     setTitle("");
-    setCategory("Press Release");
-    setSource("");
-    setDateISO(new Date().toISOString().split("T")[0]);
-    setLink("#");
-    setStatus("Published");
+    setSubtitle("");
+    setSlug("");
+    setSlugManuallyEdited(false);
+    setContentText("");
+    setImageUrl("");
+    setPdfUrl("");
+    setReleaseDate(new Date().toISOString().split("T")[0]);
+    setIsPublished(false);
+    setFormError(null);
     setIsFormOpen(true);
   };
 
-  // Open Form for Edit
-  const handleEditOpen = (item: AdminNewsItem) => {
+  // ── Open form for Edit ────────────────────────────────────────────────────
+
+  const handleEditOpen = (item: PressRelease) => {
     setEditingItem(item);
     setTitle(item.title);
-    setCategory(item.category);
-    setSource(item.source);
-    setDateISO(item.dateISO || new Date().toISOString().split("T")[0]);
-    setLink(item.link);
-    setStatus(item.status);
+    setSubtitle(item.subtitle ?? "");
+    setSlug(item.slug);
+    setSlugManuallyEdited(true); // don't auto-overwrite existing slug
+    // content is stored as JSON array of blocks — show as plain text for editing
+    const rawContent = item.content;
+    if (Array.isArray(rawContent) && rawContent.length > 0) {
+      const firstBlock = rawContent[0] as { type?: string; content?: unknown };
+      setContentText(typeof firstBlock.content === "string" ? firstBlock.content : JSON.stringify(rawContent, null, 2));
+    } else {
+      setContentText(typeof rawContent === "string" ? rawContent : "");
+    }
+    setImageUrl(item.imageUrl ?? "");
+    setPdfUrl(item.pdfUrl ?? "");
+    setReleaseDate(new Date(item.releaseDate).toISOString().split("T")[0]);
+    setIsPublished(item.isPublished);
+    setFormError(null);
     setIsFormOpen(true);
   };
 
-  // Submit form
-  const handleFormSubmit = (e: React.FormEvent) => {
+  // ── Submit form (Create or Edit) ──────────────────────────────────────────
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim() || !source.trim()) return;
+    if (!title.trim() || !slug.trim() || !contentText.trim()) return;
 
-    const displayDate = formatDisplayDate(dateISO);
+    setIsSubmitting(true);
+    setFormError(null);
 
-    if (editingItem) {
-      // Edit mode
-      setData((prev) =>
-        prev.map((item) =>
-          item.id === editingItem.id
-            ? {
-                ...item,
-                title,
-                category,
-                source,
-                date: displayDate,
-                dateISO,
-                link,
-                status,
-              }
-            : item
-        )
-      );
-    } else {
-      // Create mode
-      const newItem: AdminNewsItem = {
-        id: `news-${Date.now()}`,
-        title,
-        category,
-        source,
-        date: displayDate,
-        dateISO,
-        link,
-        status,
-      };
-      setData((prev) => [newItem, ...prev]);
+    // Wrap content as a single block to satisfy backend validator
+    const contentPayload = [{ type: "paragraph", content: contentText.trim() }];
+
+    const payload = {
+      title: title.trim(),
+      subtitle: subtitle.trim() || null,
+      slug: slug.trim(),
+      content: contentPayload,
+      imageUrl: imageUrl.trim() || null,
+      pdfUrl: pdfUrl.trim() || null,
+      releaseDate: new Date(releaseDate).toISOString(),
+      isPublished,
+    };
+
+    try {
+      if (editingItem) {
+        await apiClient.patch(`/pr/${editingItem.id}`, payload);
+      } else {
+        await apiClient.post("/pr", payload);
+      }
+      setIsFormOpen(false);
+      await fetchPressReleases();
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Something went wrong. Please try again.";
+      setFormError(message);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsFormOpen(false);
   };
 
-  // Open Delete Confirm
-  const handleDeleteOpen = (item: AdminNewsItem) => {
+  // ── Delete ────────────────────────────────────────────────────────────────
+
+  const handleDeleteOpen = (item: PressRelease) => {
     setDeletingItem(item);
     setIsDeleteOpen(true);
   };
 
-  // Confirm Delete
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
     if (!deletingItem) return;
-    setData((prev) => prev.filter((item) => item.id !== deletingItem.id));
-    setIsDeleteOpen(false);
-    setDeletingItem(null);
+    setIsDeleting(true);
+    try {
+      await apiClient.delete(`/pr/${deletingItem.id}`);
+      setIsDeleteOpen(false);
+      setDeletingItem(null);
+      await fetchPressReleases();
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Failed to delete.";
+      setListError(message);
+      setIsDeleteOpen(false);
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
-  // Table columns definition
-  const columns: TableColumn<AdminNewsItem>[] = [
+  // ── Table columns ─────────────────────────────────────────────────────────
+
+  const columns: TableColumn<PressRelease>[] = [
     {
       header: "Title",
       accessor: "title",
       render: (row) => (
-        <span style={{ fontWeight: "600", color: "var(--admin-text-primary)" }}>
-          {row.title}
+        <div>
+          <div style={{ fontWeight: 600, color: "var(--admin-text-primary)" }}>{row.title}</div>
+          {row.subtitle && (
+            <div style={{ fontSize: "12px", color: "var(--admin-text-muted)", marginTop: "2px" }}>
+              {row.subtitle}
+            </div>
+          )}
+        </div>
+      ),
+    },
+    {
+      header: "Slug",
+      accessor: "slug",
+      render: (row) => (
+        <span style={{ fontFamily: "monospace", fontSize: "12px", color: "var(--admin-text-muted)" }}>
+          {row.slug}
         </span>
       ),
     },
     {
-      header: "Category",
-      accessor: "category",
-      render: (row) => (
-        <span className="admin-badge admin-badge-info">{row.category}</span>
-      ),
-    },
-    {
-      header: "Source",
-      accessor: "source",
-    },
-    {
-      header: "Publish Date",
-      accessor: "date",
+      header: "Release Date",
+      accessor: "releaseDate",
+      render: (row) => <span>{formatDate(row.releaseDate)}</span>,
     },
     {
       header: "Status",
-      accessor: "status",
+      accessor: "isPublished",
       render: (row) => (
-        <span
-          className={`admin-badge ${
-            row.status === "Published" ? "admin-badge-success" : "admin-badge-warning"
-          }`}
-        >
-          {row.status}
+        <span className={`admin-badge ${row.isPublished ? "admin-badge-success" : "admin-badge-warning"}`}>
+          {row.isPublished ? "Published" : "Draft"}
         </span>
+      ),
+    },
+    {
+      header: "Created By",
+      accessor: "createdBy",
+      render: (row) => (
+        <span style={{ fontSize: "13px" }}>{row.createdBy?.name ?? "—"}</span>
       ),
     },
   ];
 
+  // ── Render ────────────────────────────────────────────────────────────────
+
   return (
     <div>
-      <AdminTable
-        data={data}
-        columns={columns}
-        searchPlaceholder="Search press releases..."
-        searchKeys={["title", "source", "category"]}
-        onCreate={handleCreateOpen}
-        createButtonText="Add Press Release"
-        onEdit={handleEditOpen}
-        onDelete={handleDeleteOpen}
-      />
+      {/* Error banner */}
+      {listError && (
+        <div
+          style={{
+            background: "rgba(211,47,47,0.08)",
+            border: "1px solid rgba(211,47,47,0.3)",
+            borderRadius: "8px",
+            padding: "12px 16px",
+            marginBottom: "16px",
+            color: "#ef5350",
+            fontSize: "14px",
+          }}
+        >
+          ❌ {listError}
+          <button
+            onClick={fetchPressReleases}
+            style={{ marginLeft: "12px", textDecoration: "underline", cursor: "pointer", background: "none", border: "none", color: "inherit" }}
+          >
+            Retry
+          </button>
+        </div>
+      )}
 
-      {/* Create / Edit Form Modal */}
+      {isLoading ? (
+        <div style={{ textAlign: "center", padding: "60px 0", color: "var(--admin-text-muted)" }}>
+          Loading press releases...
+        </div>
+      ) : (
+        <AdminTable
+          data={data}
+          columns={columns}
+          searchPlaceholder="Search press releases..."
+          searchKeys={["title", "slug", "subtitle"]}
+          onCreate={handleCreateOpen}
+          createButtonText="Add Press Release"
+          onEdit={handleEditOpen}
+          onDelete={handleDeleteOpen}
+        />
+      )}
+
+      {pagination && (
+        <div style={{ fontSize: "13px", color: "var(--admin-text-muted)", marginTop: "12px", textAlign: "right" }}>
+          {pagination.total} total press release{pagination.total !== 1 ? "s" : ""}
+        </div>
+      )}
+
+      {/* ── Create / Edit Modal ── */}
       <AdminModal
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
         title={editingItem ? "Edit Press Release" : "Add Press Release"}
       >
         <form onSubmit={handleFormSubmit}>
+          {/* Title */}
           <div className="admin-form-group">
-            <label className="admin-label">Title</label>
+            <label className="admin-label">Title *</label>
             <input
               type="text"
               className="admin-input"
@@ -201,96 +330,159 @@ export default function PressReleaseList() {
             />
           </div>
 
-          <div className="admin-form-row">
-            <div className="admin-form-group">
-              <label className="admin-label">Category</label>
-              <select
-                className="admin-select"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="Press Release">Press Release</option>
-                <option value="Corporate Update">Corporate Update</option>
-              </select>
-            </div>
-
-            <div className="admin-form-group">
-              <label className="admin-label">Source Outlet</label>
-              <input
-                type="text"
-                className="admin-input"
-                value={source}
-                onChange={(e) => setSource(e.target.value)}
-                placeholder="e.g. CNBC, ET NOW, mint"
-                required
-              />
-            </div>
+          {/* Subtitle */}
+          <div className="admin-form-group">
+            <label className="admin-label">Subtitle</label>
+            <input
+              type="text"
+              className="admin-input"
+              value={subtitle}
+              onChange={(e) => setSubtitle(e.target.value)}
+              placeholder="Optional short description"
+            />
           </div>
 
+          {/* Slug */}
+          <div className="admin-form-group">
+            <label className="admin-label">
+              Slug *{" "}
+              <span style={{ fontWeight: 400, fontSize: "12px", color: "var(--admin-text-muted)" }}>
+                (auto-generated, lowercase-with-dashes)
+              </span>
+            </label>
+            <input
+              type="text"
+              className="admin-input"
+              value={slug}
+              onChange={(e) => {
+                setSlug(e.target.value);
+                setSlugManuallyEdited(true);
+              }}
+              placeholder="e.g. aayush-wellness-q4-earnings"
+              required
+            />
+          </div>
+
+          {/* Content */}
+          <div className="admin-form-group">
+            <label className="admin-label">Content *</label>
+            <textarea
+              className="admin-input"
+              value={contentText}
+              onChange={(e) => setContentText(e.target.value)}
+              placeholder="Write the full press release content here..."
+              rows={6}
+              style={{ resize: "vertical", minHeight: "120px" }}
+              required
+            />
+          </div>
+
+          {/* Date + Published */}
           <div className="admin-form-row">
             <div className="admin-form-group">
-              <label className="admin-label">Release Date</label>
+              <label className="admin-label">Release Date *</label>
               <input
                 type="date"
                 className="admin-input"
-                value={dateISO}
-                onChange={(e) => setDateISO(e.target.value)}
+                value={releaseDate}
+                onChange={(e) => setReleaseDate(e.target.value)}
                 required
-              />
-            </div>
-
-            <div className="admin-form-group">
-              <label className="admin-label">External Article Link</label>
-              <input
-                type="text"
-                className="admin-input"
-                value={link}
-                onChange={(e) => setLink(e.target.value)}
-                placeholder="e.g. https://cnbctv18.com/article..."
               />
             </div>
           </div>
 
+          {/* Image URL + PDF URL */}
+          <div className="admin-form-row">
+            <div className="admin-form-group">
+              <label className="admin-label">Image URL</label>
+              <input
+                type="url"
+                className="admin-input"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="https://..."
+              />
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-label">PDF URL</label>
+              <input
+                type="url"
+                className="admin-input"
+                value={pdfUrl}
+                onChange={(e) => setPdfUrl(e.target.value)}
+                placeholder="https://..."
+              />
+            </div>
+          </div>
+
+          {/* Publish toggle */}
           <div className="admin-switch-container">
             <div className="admin-switch-label">
               <span className="admin-switch-title">Publish Immediately</span>
               <span className="admin-switch-subtitle">
-                Make this article public on the website news page
+                Make this press release visible on the public website
               </span>
             </div>
             <label className="admin-switch">
               <input
                 type="checkbox"
-                checked={status === "Published"}
-                onChange={(e) =>
-                  setStatus(e.target.checked ? "Published" : "Draft")
-                }
+                checked={isPublished}
+                onChange={(e) => setIsPublished(e.target.checked)}
               />
               <span className="admin-switch-slider" />
             </label>
           </div>
 
-          <div className="admin-modal-footer" style={{ padding: "16px 0 0 0", borderTop: "1px solid var(--admin-border)" }}>
+          {/* Form error */}
+          {formError && (
+            <div
+              style={{
+                background: "rgba(211,47,47,0.08)",
+                border: "1px solid rgba(211,47,47,0.3)",
+                borderRadius: "8px",
+                padding: "10px 14px",
+                color: "#ef5350",
+                fontSize: "13px",
+                marginTop: "8px",
+              }}
+            >
+              ❌ {formError}
+            </div>
+          )}
+
+          {/* Footer buttons */}
+          <div
+            className="admin-modal-footer"
+            style={{ padding: "16px 0 0 0", borderTop: "1px solid var(--admin-border)" }}
+          >
             <button
               type="button"
               className="admin-btn admin-btn-secondary"
               onClick={() => setIsFormOpen(false)}
+              disabled={isSubmitting}
             >
               Cancel
             </button>
-            <button type="submit" className="admin-btn admin-btn-primary">
-              {editingItem ? "Save Changes" : "Create Release"}
+            <button
+              type="submit"
+              className="admin-btn admin-btn-primary"
+              disabled={isSubmitting}
+              style={isSubmitting ? { opacity: 0.7, cursor: "not-allowed" } : undefined}
+            >
+              {isSubmitting
+                ? editingItem ? "Saving..." : "Creating..."
+                : editingItem ? "Save Changes" : "Create Release"}
             </button>
           </div>
         </form>
       </AdminModal>
 
-      {/* Delete Confirmation */}
+      {/* ── Delete Confirm ── */}
       <AdminDeleteConfirm
         isOpen={isDeleteOpen}
         onClose={() => setIsDeleteOpen(false)}
         onConfirm={handleDeleteConfirm}
-        itemName={deletingItem?.title || ""}
+        itemName={deletingItem?.title ?? ""}
       />
     </div>
   );

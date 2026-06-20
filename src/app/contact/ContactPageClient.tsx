@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import "./contact.css";
+import { apiClient } from "@/utils/apiClient";
 
 interface Toast {
   id: number;
@@ -19,6 +20,7 @@ const contactOptions = [
 export function ContactPageClient() {
   const [selectedOption, setSelectedOption] = useState("Products & Orders");
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,42 +36,88 @@ export function ContactPageClient() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const id = Date.now();
-    const newToast: Toast = {
-      id,
-      message: "Your message has been sent successfully! We will get back to you shortly.",
-      visible: false,
-    };
+    setIsSubmitting(true);
 
-    setToasts((prev) => [...prev, newToast]);
+    try {
+      // Map frontend fields to backend validator expectations
+      const payload = {
+        fullName: formData.name.trim(),
+        email: formData.email.trim(),
+        phoneNo: formData.phone.trim() || undefined,
+        company: formData.company.trim() || undefined,
+        inquiryType: selectedOption,
+        message: formData.message.trim(),
+      };
 
-    // Animate Toast In
-    setTimeout(() => {
-      setToasts((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, visible: true } : t))
-      );
-    }, 100);
+      await apiClient.post("/contact", payload);
 
-    // Animate Toast Out
-    setTimeout(() => {
-      setToasts((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, visible: false } : t))
-      );
+      const id = Date.now();
+      const newToast: Toast = {
+        id,
+        message: "Your message has been sent successfully! We will get back to you shortly.",
+        visible: false,
+      };
+
+      setToasts((prev) => [...prev, newToast]);
+
+      // Animate Toast In
       setTimeout(() => {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
-      }, 400);
-    }, 4000);
+        setToasts((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, visible: true } : t))
+        );
+      }, 100);
 
-    // Reset Form Fields
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      message: "",
-    });
+      // Animate Toast Out
+      setTimeout(() => {
+        setToasts((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, visible: false } : t))
+        );
+        setTimeout(() => {
+          setToasts((prev) => prev.filter((t) => t.id !== id));
+        }, 400);
+      }, 4000);
+
+      // Reset Form Fields
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        message: "",
+      });
+    } catch (err: unknown) {
+      console.error(err);
+      const id = Date.now();
+      const errorMsg = err instanceof Error ? err.message : "Failed to send message. Please try again later.";
+      const errorToast: Toast = {
+        id,
+        message: errorMsg,
+        visible: false,
+      };
+
+      setToasts((prev) => [...prev, errorToast]);
+
+      // Animate Toast In
+      setTimeout(() => {
+        setToasts((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, visible: true } : t))
+        );
+      }, 100);
+
+      // Animate Toast Out
+      setTimeout(() => {
+        setToasts((prev) =>
+          prev.map((t) => (t.id === id ? { ...t, visible: false } : t))
+        );
+        setTimeout(() => {
+          setToasts((prev) => prev.filter((t) => t.id !== id));
+        }, 400);
+      }, 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -321,8 +369,13 @@ export function ContactPageClient() {
               </div>
 
               {/* Submit Button */}
-              <button type="submit" className="contact-card-submit-btn">
-                <span>Send Message</span>
+              <button
+                type="submit"
+                className="contact-card-submit-btn"
+                disabled={isSubmitting}
+                style={isSubmitting ? { opacity: 0.7, cursor: "not-allowed" } : undefined}
+              >
+                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
               </button>
             </form>
           </div>
@@ -330,15 +383,19 @@ export function ContactPageClient() {
       </div>
 
       {/* Alert toast notifications */}
-      {toasts.map((toast) => (
-        <div
-          key={toast.id}
-          className={`contact-success-toast ${toast.visible ? "show" : ""}`}
-        >
-          <span>✔️</span>
-          <span>{toast.message}</span>
-        </div>
-      ))}
+      {toasts.map((toast) => {
+        const isError = toast.message.toLowerCase().includes("failed") || toast.message.toLowerCase().includes("error") || toast.message.toLowerCase().includes("invalid");
+        return (
+          <div
+            key={toast.id}
+            className={`contact-success-toast ${toast.visible ? "show" : ""}`}
+            style={isError ? { borderColor: "rgba(211, 47, 47, 0.4)" } : undefined}
+          >
+            <span>{isError ? "❌" : "✔️"}</span>
+            <span>{toast.message}</span>
+          </div>
+        );
+      })}
     </>
   );
 }

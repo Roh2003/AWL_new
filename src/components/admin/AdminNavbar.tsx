@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import React from "react";
+import { useAuth } from "../../utils/useAuth";
 
 interface AdminNavbarProps {
   isMobileOpen: boolean;
@@ -13,6 +14,7 @@ export default function AdminNavbar({
   setIsMobileOpen,
 }: AdminNavbarProps) {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   // Create human-readable breadcrumbs from the pathname (e.g. /admin/press-releases -> Admin / Press Releases)
   const getBreadcrumbs = () => {
@@ -56,6 +58,15 @@ export default function AdminNavbar({
       );
     });
   };
+
+  const displayName = user?.name || "Admin User";
+  const displayRole = user?.role === "SUPER_ADMIN" ? "Super Admin" : "Admin";
+  const initials = displayName
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <header className="admin-navbar">
@@ -118,13 +129,59 @@ export default function AdminNavbar({
         </div>
 
         <div className="admin-user-profile">
-          <div className="admin-user-avatar">A</div>
+          <div className="admin-user-avatar">{initials}</div>
           <div className="admin-user-info">
-            <span className="admin-user-name">Admin User</span>
-            <span className="admin-user-role">Super Admin</span>
+            <span className="admin-user-name">{displayName}</span>
+            <span className="admin-user-role">{displayRole}</span>
           </div>
         </div>
+
+        <button
+          onClick={logout}
+          style={{
+            background: "none",
+            border: "1px solid var(--admin-border)",
+            color: "var(--admin-text-secondary)",
+            padding: "8px 12px",
+            borderRadius: "8px",
+            cursor: "pointer",
+            fontSize: "0.85rem",
+            fontWeight: 500,
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            transition: "var(--admin-transition)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = "var(--admin-danger)";
+            e.currentTarget.style.color = "var(--admin-danger)";
+            e.currentTarget.style.backgroundColor = "var(--admin-danger-alpha)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "var(--admin-border)";
+            e.currentTarget.style.color = "var(--admin-text-secondary)";
+            e.currentTarget.style.backgroundColor = "transparent";
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Logout
+        </button>
       </div>
     </header>
   );
 }
+
