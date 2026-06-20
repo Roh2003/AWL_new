@@ -279,6 +279,10 @@
   transform: scale(1.82);
 }
 
+.grid-herbal-masala .prod-title {
+  margin-top: 30px;
+}
+
 
 /* Visual Placeholders when image string is empty */
 .prod-placeholder {
@@ -675,7 +679,7 @@ body:has(.products-page) #navbar .hamburger-line {
   }
 
   .tab-btn {
-    font-size: 18px;
+    font-size: 14px;
     white-space: nowrap;
     padding: 16px 4px;
   }
@@ -723,15 +727,27 @@ body:has(.products-page) #navbar .hamburger-line {
   }
 
   .prod-plus-btn {
-    width: 32px;
-    height: 32px;
-    top: 16px;
-    right: 16px;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 54px;
+    height: 45px;
+    border-radius: 32px;
+    background-color: var(--lime-light);
+    color: var(--text-primary);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
   }
 
   .prod-plus-btn svg {
-    width: 10px;
-    height: 10px;
+    width: 16px;
+    height: 16px;
   }
 
   .prod-image-wrapper {
@@ -747,13 +763,24 @@ body:has(.products-page) #navbar .hamburger-line {
   }
 
   .prod-title {
-    font-size: 22px;
-    margin-bottom: 12px;
+    color: #050505;
+    font-family: Manrope;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    /* 16.8px */
   }
 
   .prod-description {
-    font-size: 14px;
-    line-height: 1.5;
+    color: var(--PremiumGray1, #2B2B2B);
+    text-align: center;
+    font-family: Manrope;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 160%;
+    /* 19.2px */
   }
 
   /* Gummies Banner */

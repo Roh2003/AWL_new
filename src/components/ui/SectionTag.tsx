@@ -18,19 +18,19 @@ export function SectionTag({
   const containerClass = `${variant === "beyond" ? "beyond-section-tag" : "section-tag"} ${className}`.trim();
 
   let numStyle: React.CSSProperties | undefined = undefined;
-  let lineStyle: React.CSSProperties | undefined = undefined;
+  let lineStyle: React.CSSProperties = { width: "60px", height: "1px" };
   let labelClass = "";
 
   if (theme === "glass") {
     numStyle = { background: "rgba(255, 255, 255, 0.1)", color: "#fff" };
-    lineStyle = { background: "rgba(255, 255, 255, 0.3)" };
+    lineStyle = { ...lineStyle, background: "rgba(255, 255, 255, 0.3)" };
     labelClass = "beyond-label";
   } else if (theme === "light") {
-    lineStyle = { background: "#E0E0E0" };
+    lineStyle = { ...lineStyle, background: "#E0E0E0" };
     labelClass = "section-label label-light";
   } else {
     // default / dark theme
-    lineStyle = { background: "#0505051F" };
+    lineStyle = { ...lineStyle, background: "#0505051F" };
     labelClass = "section-label label-dark";
   }
 

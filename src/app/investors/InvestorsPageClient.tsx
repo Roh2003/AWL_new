@@ -15,7 +15,6 @@ interface DocumentItem {
 interface Category {
   id: string;
   name: string;
-  desc: string;
   hasYears: boolean;
   years?: string[];
   documents?: DocumentItem[];
@@ -41,7 +40,6 @@ const categoriesData: Category[] = [
   {
     id: "annual-report",
     name: "Annual Report",
-    desc: "Complete financial reports detailing Aayush Wellness Limited's operations, audited statements, and corporate balance sheets for each financial year.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -60,7 +58,6 @@ const categoriesData: Category[] = [
   {
     id: "annual-returns",
     name: "Annual Returns",
-    desc: "Statutory annual returns filed with the Registrar of Companies (RoC) reflecting the company's registration, shareholdings, and governance profile.",
     hasYears: false,
     documents: [
       { id: "artn-25", name: "Annual_Return_31_March_2025.pdf", date: "2025-09-30", size: "2.4 MB", url: "#" },
@@ -73,7 +70,6 @@ const categoriesData: Category[] = [
   {
     id: "bm-intimation",
     name: "BM Intimation",
-    desc: "Prior intimations sent to the Stock Exchange (BSE) regarding upcoming board meetings scheduled to approve financial results or other key corporate actions.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -91,7 +87,6 @@ const categoriesData: Category[] = [
   {
     id: "bm-outcome",
     name: "BM Outcome",
-    desc: "Outcome reports submitted to the BSE outlining decisions taken during Board Meetings, including approvals of financial statements and corporate schemes.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -109,7 +104,6 @@ const categoriesData: Category[] = [
   {
     id: "news-adv",
     name: "News Adv.",
-    desc: "Newspaper advertisements published in leading English and Marathi publications detailing financial outcomes, general meetings, and public notices.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -127,7 +121,6 @@ const categoriesData: Category[] = [
   {
     id: "twc",
     name: "TWC",
-    desc: "Trading Window Closure notifications issued to designated insiders and directors, restricting trade on company shares prior to financial disclosures.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -145,7 +138,6 @@ const categoriesData: Category[] = [
   {
     id: "book-closure",
     name: "Book Closure",
-    desc: "Notices determining the dates during which the Register of Members and Share Transfer Books remain closed for dividends or general meeting requirements.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -159,7 +151,6 @@ const categoriesData: Category[] = [
   {
     id: "notices",
     name: "Notices",
-    desc: "Official convocations, proxy forms, and explanatory notes for Annual General Meetings (AGM), Extraordinary General Meetings (EGM), or Postal Ballot.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -174,7 +165,6 @@ const categoriesData: Category[] = [
   {
     id: "scrutinizer-report",
     name: "Scrutinizer Report",
-    desc: "Reports compiled by independent scrutinizers certifying the validity and outcome of remote e-voting and ballot voting for general assemblies.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -188,7 +178,6 @@ const categoriesData: Category[] = [
   {
     id: "voting-results",
     name: "Voting Results",
-    desc: "Disclosure of the voting counts and resolutions approved during corporate assemblies, formatted per Regulation 44 of SEBI LODR.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -202,7 +191,6 @@ const categoriesData: Category[] = [
   {
     id: "press-release",
     name: "Press Release",
-    desc: "Media circulars and corporate announcements issued to the press and public regarding financial outcomes or strategic updates.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -218,7 +206,6 @@ const categoriesData: Category[] = [
   {
     id: "policies-scheme",
     name: "Policies / Scheme",
-    desc: "Corporate governance guidelines, ethical codes, charter policies, and internal codes adopted by Aayush Wellness Limited to secure transparency.",
     hasYears: false,
     documents: [
       { id: "pol-1", name: "Code_of_Conduct_and_Ethics.pdf", date: "2025-03-15", size: "450 KB", url: "#" },
@@ -234,7 +221,6 @@ const categoriesData: Category[] = [
   {
     id: "updates",
     name: "Updates",
-    desc: "General updates, investor updates, presentation reports, and material communications addressing the investor ecosystem.",
     hasYears: false,
     documents: [
       { id: "upd-1", name: "Corporate_Investor_Presentation_June_2025.pdf", date: "2025-06-01", size: "3.2 MB", url: "#" },
@@ -244,7 +230,6 @@ const categoriesData: Category[] = [
   {
     id: "bse-compliances",
     name: "BSE Compliances",
-    desc: "Compliance reports, shareholding patterns, and statutory disclosures submitted under SEBI Listing Obligations and Disclosure Requirements (LODR).",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYearAndQuarter: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -280,7 +265,6 @@ const categoriesData: Category[] = [
   {
     id: "right-issue",
     name: "Right Issue",
-    desc: "Legal and procedural documents, including letters of offer and application drafts, pertaining to rights issues authorized by the company.",
     hasYears: false,
     documents: [
       { id: "ri-1", name: "Right_Issue_Letter_of_Offer_2024.pdf", date: "2024-11-12", size: "2.6 MB", url: "#" },
@@ -291,7 +275,6 @@ const categoriesData: Category[] = [
   {
     id: "dividend",
     name: "Dividend",
-    desc: "Details of unclaimed or unpaid dividends declared by the Board of Directors, ensuring compliance with Investor Education and Protection Fund (IEPF).",
     hasYears: false,
     documents: [
       { id: "div-1", name: "Unclaimed_Dividend_Details_2024-25.pdf", date: "2025-05-30", size: "850 KB", url: "#" },
@@ -301,7 +284,6 @@ const categoriesData: Category[] = [
   {
     id: "moa-aoa",
     name: "MOA / AOA",
-    desc: "Fundamental constitutional blueprints outlining Aayush Wellness Limited's corporate objectives (Memorandum) and internal administration (Articles).",
     hasYears: false,
     documents: [
       { id: "moa", name: "Memorandum_of_Association_(MOA).pdf", date: "2023-09-15", size: "1.8 MB", url: "#" },
@@ -311,7 +293,6 @@ const categoriesData: Category[] = [
   {
     id: "board-of-directors",
     name: "Board of Directors",
-    desc: "Profiles, committee compositions, and details of the Board of Directors of Aayush Wellness Limited.",
     hasYears: false,
     documents: [
       { id: "bod-1", name: "Composition_of_Committees.pdf", date: "2025-04-10", size: "320 KB", url: "#" },
@@ -321,7 +302,6 @@ const categoriesData: Category[] = [
   {
     id: "subsidiaries-financials",
     name: "Financial Statements of Subsidiaries",
-    desc: "Audited financial statements and related disclosures of the subsidiary companies of Aayush Wellness Limited.",
     hasYears: true,
     years: FINANCIAL_YEARS,
     documentsByYear: FINANCIAL_YEARS.reduce((acc, year) => {
@@ -431,7 +411,6 @@ export function InvestorsPageClient() {
         <section className="investors-content">
           <div className="investors-header-block">
             <h1 className="investors-category-title">{currentCategory.name}</h1>
-            <p className="investors-category-desc">{currentCategory.desc}</p>
           </div>
 
           {currentCategory.id === "investor-grievance" && (
@@ -732,7 +711,6 @@ export function InvestorsPageClient() {
                   {isExpanded && (
                     <div className="accordion-content">
                       <p className="investors-category-desc" style={{ fontSize: "13px", marginBottom: "16px" }}>
-                        {cat.desc}
                       </p>
 
                       {cat.id === "investor-grievance" && (

@@ -10,10 +10,6 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  if (pathname && pathname.startsWith("/admin")) {
-    return null;
-  }
-
   useEffect(() => {
     let lastScrollY = window.scrollY;
     let ticking = false;
@@ -61,6 +57,11 @@ export function Header() {
     }
     return pathname.startsWith(path);
   };
+
+  if (pathname && pathname.startsWith("/admin")) {
+    return null;
+  }
+
 
   const ChevronDown = () => (
     <svg
@@ -217,11 +218,6 @@ export function Header() {
             <li>
               <Link href="/products" className={isActive("/products") ? "active" : ""}>
                 All Products
-              </Link>
-            </li>
-            <li>
-              <Link href="/ayurveda" className={isActive("/ayurveda") ? "active" : ""}>
-                Ayurveda & Science
               </Link>
             </li>
             <li>

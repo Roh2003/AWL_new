@@ -15,9 +15,11 @@ export function AboutVision() {
       const container = containerRef.current;
       if (!container) return 0;
       const rect = container.getBoundingClientRect();
-      const totalScrollable = rect.height - window.innerHeight;
+      // Start progress when the top of the container reaches the half of the screen
+      const startOffset = window.innerHeight / 2;
+      const totalScrollable = rect.height - window.innerHeight + startOffset;
       if (totalScrollable <= 0) return 0;
-      return Math.max(0, Math.min(1, -rect.top / totalScrollable));
+      return Math.max(0, Math.min(1, (startOffset - rect.top) / totalScrollable));
     };
 
     const tick = () => {
@@ -37,41 +39,41 @@ export function AboutVision() {
 
   // Calculate opacities and translation values based on scroll progress
 
-  // Background 2 (Leaf/Swimmer) slides in from 0.45 to 0.65
+  // Background 2 (Leaf/Swimmer) slides in from 0.35 to 0.55
   let bg2TranslateY = 100;
-  if (progress > 0.45) {
-    bg2TranslateY = Math.max(0, 100 - ((progress - 0.45) / 0.2) * 100);
+  if (progress > 0.35) {
+    bg2TranslateY = Math.max(0, 100 - ((progress - 0.35) / 0.2) * 100);
   }
 
-  // Card 1 (Vision) — enters slowly 0→0.15, stays 0.15→0.40, exits 0.40→0.52
+  // Card 1 (Vision) — enters slowly 0→0.15, stays 0.15→0.30, exits 0.30→0.42
   let card1Opacity = 0;
-  let card1TranslateY = 100;
+  let card1TranslateY = 25;
 
   if (progress < 0.15) {
     const ratio = progress / 0.15;
     card1Opacity = ratio;
-    card1TranslateY = 100 - ratio * 100;
-  } else if (progress >= 0.15 && progress < 0.40) {
+    card1TranslateY = 25 - ratio * 25;
+  } else if (progress >= 0.15 && progress < 0.30) {
     card1Opacity = 1;
     card1TranslateY = 0;
-  } else if (progress >= 0.40 && progress < 0.52) {
-    const ratio = (progress - 0.40) / 0.12;
+  } else if (progress >= 0.30 && progress < 0.42) {
+    const ratio = (progress - 0.30) / 0.12;
     card1Opacity = 1 - ratio;
-    card1TranslateY = -ratio * 100;
+    card1TranslateY = -ratio * 25;
   } else {
     card1Opacity = 0;
-    card1TranslateY = -100;
+    card1TranslateY = -25;
   }
 
-  // Card 2 (Purpose) — enters slowly 0.50→0.80, stays at center 0.80+
+  // Card 2 (Purpose) — enters slowly 0.40→0.70, stays at center 0.70+
   let card2Opacity = 0;
-  let card2TranslateY = 100;
+  let card2TranslateY = 25;
 
-  if (progress >= 0.50 && progress < 0.80) {
-    const ratio = (progress - 0.50) / 0.30;
+  if (progress >= 0.40 && progress < 0.70) {
+    const ratio = (progress - 0.40) / 0.30;
     card2Opacity = ratio;
-    card2TranslateY = 100 - ratio * 100;
-  } else if (progress >= 0.80) {
+    card2TranslateY = 25 - ratio * 25;
+  } else if (progress >= 0.70) {
     card2Opacity = 1;
     card2TranslateY = 0;
   }
@@ -113,6 +115,7 @@ export function AboutVision() {
           <div
             className="vision-card"
             style={{
+              opacity: card1Opacity,
               backgroundColor: `rgba(255, 255, 255, ${0.15 * card1Opacity})`,
               backdropFilter: `blur(${10 * card1Opacity}px)`,
               WebkitBackdropFilter: `blur(${10 * card1Opacity}px)`,
@@ -134,6 +137,7 @@ export function AboutVision() {
           <div
             className="purpose-card"
             style={{
+              opacity: card2Opacity,
               backgroundColor: `rgba(120, 140, 60, ${0.35 * card2Opacity})`,
               backdropFilter: `blur(${20 * card2Opacity}px)`,
               WebkitBackdropFilter: `blur(${20 * card2Opacity}px)`,

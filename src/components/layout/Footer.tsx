@@ -75,7 +75,10 @@ export function Footer() {
       <div className="footer-wordmark">Aayush Wellness</div>
 
       <div className="footer-bottom">
-        <p className="footer-copy">© 2025 Aayush Wellness Limited. All rights reserved.</p>
+        <p className="footer-copy">
+          © 2025 Aayush Wellness Limited. All rights reserved
+          <Link href="/admin/login" style={{ cursor: "default", color: "inherit", textDecoration: "none" }}>.</Link>
+        </p>
         <div className="footer-legal">
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms of Service</Link>

@@ -752,6 +752,13 @@
     padding: 60px 20px;
   }
 
+  .sustainability-page .approach-bg-shape {
+    top: 0;
+    right: -20px;
+    width: 220px;
+    transform: rotate(180deg);
+  }
+
   .sustainability-page .approach-header {
     flex-direction: column;
     gap: 20px;

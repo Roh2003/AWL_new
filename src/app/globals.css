@@ -25,6 +25,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -2359,9 +2360,17 @@ footer {
   #beyond,
   #reach .reach-header,
   .contact-inner,
-  .vision-inner,
-  .footer-top {
+  .vision-inner {
     grid-template-columns: 1fr;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 24px;
+  }
+
+  .footer-top>div:first-child {
+    grid-column: 1 / span 2;
   }
 
   .products-grid,
@@ -2429,6 +2438,18 @@ footer {
     height: 280px !important;
   }
 
+  .press-card-horizontal .press-notch-right {
+    right: auto !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 10% !important;
+    transform: translateX(-50%) !important;
+    border-top: none !important;
+    border-left: 16px solid transparent !important;
+    border-right: 16px solid transparent !important;
+    border-bottom: 16px solid #fff !important;
+  }
+
   /* Contact Form margin offset reset */
   .contact-right {
     margin-left: 0 !important;
@@ -2442,8 +2463,8 @@ footer {
 
   /* Wordmark scaling to prevent overflow */
   .footer-wordmark {
-    font-size: 18vw;
-    line-height: 1.4;
+    font-size: 20vw;
+    line-height: 1.2;
     letter-spacing: -0.04em;
   }
 
@@ -2507,12 +2528,10 @@ footer {
     gap: 24px;
   }
 
-  .footer-top {
-    grid-template-columns: 1fr;
-  }
+
 
   .footer-wordmark {
-    font-size: 16vw;
+    font-size: 22vw;
     line-height: 1.2;
     letter-spacing: -0.04em;
   }
@@ -3668,87 +3687,111 @@ footer {
     text-transform: uppercase;
   }
 
+  footer {
+    padding: 60px 24px 28px !important;
+  }
+
   .footer-wordmark {
-    font-size: 21vw !important;
-    line-height: 1.2 !important;
+    color: #FFF;
+    text-align: center !important;
+    font-family: var(--font-display, "Inter Display");
+    font-size: clamp(45px, 20vw, 90px) !important;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.15 !important;
+    margin: 20px auto !important;
+    letter-spacing: -2.34px !important;
+    display: block !important;
+    width: 100% !important;
+
+
+    .footer-bottom {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+    }
+
+    /* Hero action buttons mobile responsiveness */
+    .hero-actions {
+      gap: 12px !important;
+      margin-top: 700px !important;
+    }
+
+    .btn-ghost,
+    .btn-lime {
+      font-size: 13px !important;
+      padding: 15px 20px !important;
+
+    }
+
+    #hero {
+      height: 70vh !important;
+      min-height: 620px !important;
+    }
+
+    .scroll-indicator {
+      display: none !important;
+    }
+
+    /* About Read More mobile button overrides */
+    .about-read-more {
+      font-size: 14px !important;
+      padding: 10px 20px !important;
+      margin-top: 24px !important;
+    }
+
+    .about-read-more svg {
+      width: 18px !important;
+      height: 18px !important;
+    }
   }
 
-  .footer-bottom {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
+
+  .sus-approach-bg-shape {
+    top: -40px !important;
+    right: -40px !important;
+    bottom: auto !important;
+    width: 220px !important;
+    height: auto !important;
+    transform: rotate(180deg) !important;
   }
 
-  /* Hero action buttons mobile responsiveness */
-  .hero-actions {
-    gap: 12px !important;
-    margin-top: 700px !important;
-  }
-
-  .btn-ghost,
-  .btn-lime {
-    font-size: 13px !important;
-    padding: 15px 20px !important;
-
-  }
-
-  #hero {
-    height: 70vh !important;
-    min-height: 620px !important;
-  }
-
-  .scroll-indicator {
-    display: none !important;
-  }
-
-  /* About Read More mobile button overrides */
-  .about-read-more {
-    font-size: 14px !important;
-    padding: 10px 20px !important;
-    margin-top: 24px !important;
-  }
-
-  .about-read-more svg {
-    width: 18px !important;
-    height: 18px !important;
-  }
-}
-
-/* ==========================================================================
+  /* ==========================================================================
    AYU-TAG GLOBAL UI STYLES
    ========================================================================== */
-.ayu-tag {
-  display: inline-block;
-  padding: 8px 20px;
-  border-radius: 50px;
-  font-family: var(--font-body), sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  text-transform: capitalize;
-  user-select: none;
-  margin-bottom: 36px;
-}
+  .ayu-tag {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-family: var(--font-body), sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: capitalize;
+    user-select: none;
+    margin-bottom: 36px;
+  }
 
-.ayu-tag-dark {
-  background: var(--black, #0a0a0a);
-  color: #fff;
-}
+  .ayu-tag-dark {
+    background: var(--black, #0a0a0a);
+    color: #fff;
+  }
 
-.ayu-tag-light {
-  background: #fff;
-  color: var(--black, #0a0a0a);
-  border: 1px solid var(--gray-200, #e0ddd8);
-}
+  .ayu-tag-light {
+    background: #fff;
+    color: var(--black, #0a0a0a);
+    border: 1px solid var(--gray-200, #e0ddd8);
+  }
 
-.ayu-tag-glass {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  backdrop-filter: blur(4px);
-}
+  .ayu-tag-glass {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
 
-/* Force dark navbar background on the store page so white links and logo are visible on the light background */
-body:has(.store-page) #navbar {
-  background: rgba(10, 10, 10, 0.96) !important;
-  backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  /* Force dark navbar background on the store page so white links and logo are visible on the light background */
+  body:has(.store-page) #navbar {
+    background: rgba(10, 10, 10, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
 }

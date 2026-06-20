@@ -357,7 +357,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
 
 .about-page .year-badge {
   padding: 6px 14px;
-  background: #e8e8e6;
+  background: #fff;
   border-radius: 6px;
   font-size: 18px;
   font-weight: 600;
@@ -417,7 +417,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
 /* ===== VISION & PURPOSE SCROLLEFFECT ===== */
 .about-page .vision-scroll-container {
   position: relative;
-  height: 550vh;
+  height: 350vh;
   /* total scrollable length */
   width: 100%;
 }
@@ -502,17 +502,19 @@ body:has(.about-page) #navbar .nav-cta:hover {
   margin: 0;
   width: calc(100% - 80px);
   max-width: 1300px;
+  will-change: transform, opacity;
 }
 
 .about-page .vision-card {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 48px;
-  background: rgba(255, 255, 255, .15);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(58px) saturate(280%);
+  -webkit-backdrop-filter: blur(58px) saturate(280%);
   padding: 60px 64px;
-  border: 1px solid rgba(255, 255, 255, .25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
 }
 
 .about-page .vision-label {
@@ -537,11 +539,12 @@ body:has(.about-page) #navbar .nav-cta:hover {
   display: grid;
   grid-template-columns: 240px 1fr;
   gap: 48px;
-  background: rgba(120, 140, 60, .35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(120, 140, 60, 0.25);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   padding: 60px 64px;
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
 }
 
 .about-page .purpose-label {
@@ -822,6 +825,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
 
   .about-page .story-title {
     font-size: clamp(26px, 6.5vw, 36px);
+    font-weight: 700;
     margin-right: 0;
     margin-left: 0;
   }
@@ -922,7 +926,6 @@ body:has(.about-page) #navbar .nav-cta:hover {
     color: #fff;
     font-weight: 600;
     line-height: 1.1;
-    text-align: center;
   }
 
   .about-page .vision-text,
@@ -930,7 +933,6 @@ body:has(.about-page) #navbar .nav-cta:hover {
     font-size: clamp(14px, 4vw, 16px);
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.95);
-    text-align: center;
   }
 
   /* Values Overrides */
@@ -958,7 +960,7 @@ body:has(.about-page) #navbar .nav-cta:hover {
   .about-page .values-big-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 20px;
+    padding: 2px;
     border-radius: 16px;
     margin-bottom: 20px;
   }

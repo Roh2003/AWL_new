@@ -428,16 +428,30 @@
   gap: 20px;
   max-height: 335px;
   overflow-y: auto;
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE/Edge */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.03);
+  padding-right: 12px;
   padding-bottom: 15px;
 }
 
 .ayurveda-page .ayu-principles-cards::-webkit-scrollbar {
-  display: none;
-  /* Safari and Chrome */
+  width: 4px;
+  height: 4px;
+}
+
+.ayurveda-page .ayu-principles-cards::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+
+.ayurveda-page .ayu-principles-cards::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.ayurveda-page .ayu-principles-cards::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .ayurveda-page .ayu-principles-card {
@@ -684,21 +698,19 @@
 
 .ayurveda-page .ayu-banner-deco {
   position: absolute;
-  right: -50px;
-  top: -50px;
+  right: 0;
+  top: 0;
   width: 300px;
   height: 300px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background-image: url('/assets/images/ayurveda/Circles.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top right;
   pointer-events: none;
 }
 
 .ayurveda-page .ayu-banner-deco::after {
-  content: "";
-  position: absolute;
-  inset: 50px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: none;
 }
 
 .ayurveda-page .ayu-banner-title {
@@ -955,7 +967,8 @@
   .ayurveda-page .ayu-tag,
   .ayurveda-page .ayu-gap-tag,
   .ayurveda-page .ayu-principles-tag {
-    margin-bottom: 5px !important;
+    margin-bottom: 15px !important;
+    margin-top: -20px;
   }
 
   .ayurveda-page .ayu-gap-title,
@@ -1069,5 +1082,13 @@
   .ayurveda-page .ayu-banner-desc {
     font-size: clamp(15px, 3.5vw, 17px);
     line-height: 1.6;
+  }
+
+  .ayurveda-page .ayu-banner-deco {
+    right: 0;
+    top: 0;
+    width: 180px;
+    height: 180px;
+    background-image: url('/assets/images/ayurveda/Circles Mobile View.png');
   }
 }
